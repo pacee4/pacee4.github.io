@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="svg1" version="1.1" viewBox="0 0 480 360" height="360" width="480">
+  <defs id="defs1"></defs>
+  <g style="display:inline" id="layer1">
+    <g style="display:inline" id="g17">
+      <g id="g12">
+        <path id="path1" d="M 50,17 C 37.309892,17 27,27.309892 27,40 v 190 c 0,12.69011 10.309892,23 23,23 h 380 c 12.69011,0 23,-10.30989 23,-23 V 40 C 453,27.309892 442.69011,17 430,17 Z m 0,6 h 380 c 9.46989,0 17,7.530108 17,17 v 190 c 0,9.46989 -7.53011,17 -17,17 H 50 c -9.469892,0 -17,-7.53011 -17,-17 V 40 c 0,-9.469892 7.530108,-17 17,-17 z" style="baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#e93a3a;fill-opacity:1;stroke-miterlimit:2;enable-background:accumulate;stop-color:#000000;stop-opacity:1"></path>
+      </g>
+    </g>
+  </g>
+</svg>
