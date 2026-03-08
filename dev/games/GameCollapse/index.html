@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>GameCollapseT</title>
+    <style>
+
+        body {
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        #divContainer {
+            width: 100dvw;
+            height: 100dvh;
+        }
+        #divContainer > *{
+            position: absolute;
+        }
+
+        #divGame {
+            width: 100%;
+            height: 100%;
+        }
+        #divGame > * {
+            position: absolute;
+        }
+        #divCanvasPositioning {
+            width: 100%;
+            height: 100%;
+        }
+        
+        #divCanvasPositioning.js-input-scrollable {
+            align-items: flex-start;
+        }
+
+        /* DIALOG 1 */
+        #divDialog1 {
+            background-color: #00000080;
+            width: 100%;
+            height: 100%;
+        }
+        #divDialog1 > div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #divDialog1 > div > img {
+            width: 5em;
+            margin-bottom: 10px;
+        }
+        #divDialog1 > div > p {
+            margin: 0;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        /* PROGRESS BAR */
+        #divProgressBar{
+            position: absolute;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #progressBarText{
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            
+            text-align: center;
+        }
+        #progressBarError{
+            font-family: monospace;
+            font-size: 1rem;
+            margin-bottom: 10px;
+
+            text-align: center;
+        }
+        #progressBar{
+            position: relative;
+
+            border: 1px solid #ffffff;
+            width: 200px;
+            height: 20px;
+        }
+        #progressBarValue{
+            position: absolute;
+
+            background-color: #ffffff;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 0%;
+        }
+
+        /* CANVAS AND ELEMENTS */
+        #divCanvas{
+            position: absolute;
+            overflow: hidden;
+        }
+        #divCanvas > *{
+            position: absolute;
+        }
+        #divCanvas > #divCanvasElements {
+            transform-origin: left top;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        #divCanvasElements > *{
+            position: absolute;
+        }
+        #divCanvasElements.devArea :not(.transparent):not(input) {
+            background-color: #008000;
+        }
+
+        /* FULLSCREEN BUTTON */
+        #divBFullscreen{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        #bFullscreen{
+            display: block;
+            margin: 0;
+            padding: 0;
+
+            background-color: #909090;
+            border: 2px solid black;
+        }
+        #bFullscreen:hover{
+            background-color: #c0c0c0;
+        }
+        #bFullscreen:active{
+            background-color: #404040;
+        }
+        .bFullscreenImgSwitch{
+            display: block;
+            width: 40px;
+            height: 40px;
+        }
+
+        /* GENERAL */
+        .hide {
+            display: none !important;
+        }
+        .hide2 {
+            display: none !important;
+        }
+        .not-selectable * {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* SMALL SCREENS */
+        @media screen and ((min-resolution: 2dppx) or (max-width: 600px)) {
+            .bFullscreenImgSwitch {
+                width: auto;
+                height: auto;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- DEBUG -->
+    <div id="divContainer" class="flex-center">
+        
+        <div id="divGame" class="hide">
+            <div id="divCanvasPositioning" class="flex-center">
+                <div id="divCanvas">
+                    <canvas id="canvas"></canvas>
+
+                    <div id="divCanvasElements" class="hide transparent">
+                        <input style="top: 0; right: 0;" type="text">
+                        <input style="top: 55%; right: 300px;" type="text">
+                        <input style="bottom: 0; right: 0;" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div id="divDialog1" class="hide flex-center">
+                <div>
+                    <img src="icons/rotate_device.svg" alt="Rotate Device">
+                    <p class="no-margin">Поверните устройство в горизонтальное положение</p>
+                </div>
+            </div>
+
+            <div id="divBFullscreen" class="not-selectable">
+                <button id="bFullscreen">
+                    <div>
+                        <img class="bFullscreenImgSwitch" src="icons/fullscreen_enter.svg" alt="Fullscreen" draggable="false">
+                        <img class="bFullscreenImgSwitch hide" src="icons/fullscreen_exit.svg" alt="Fullscreen" draggable="false">
+                        <img class="bFullscreenImgSwitch hide" src="icons/fullscreen_close.svg" alt="Fullscreen" draggable="false">
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <div id="divProgressBar" class="not-selectable">
+            <p id="progressBarText"><noscript>Включите JavaScript</noscript></p>
+            <code id="progressBarError" class="hide"></code>
+            <div id="progressBar">
+                <div id="progressBarValue"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>document.getElementById("progressBarText").textContent = "Загрузка... 0%"</script>
+    <!--COMPILED BY TYPESCRIPT-->
+    <script src="./app.js"></script>
+
+</body>

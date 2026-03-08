@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="20"
+   height="20"
+   viewBox="0 0 20 20"
+   version="1.1"
+   id="svg1"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient28">
+      <stop
+         style="stop-color:#ffc0c0;stop-opacity:0.75105482;"
+         offset="0"
+         id="stop23" />
+      <stop
+         style="stop-color:#ee2f2f;stop-opacity:0.25035161;"
+         offset="0.75701755"
+         id="stop24" />
+      <stop
+         style="stop-color:#de1616;stop-opacity:0.2517581;"
+         offset="1"
+         id="stop25" />
+    </linearGradient>
+    <radialGradient
+       xlink:href="#linearGradient28"
+       id="radialGradient12"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.2415749,0,0,1.2415749,-9.6464413,-10.417122)"
+       cx="33.203331"
+       cy="35.695244"
+       fx="33.203331"
+       fy="35.695244"
+       r="9" />
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-20,-40)">
+    <g
+       id="g20"
+       style="display:inline"
+       transform="translate(-4.5,12.5)">
+      <path
+         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#404058;fill-opacity:1;stroke:none;stroke-linejoin:bevel;stroke-miterlimit:2;stroke-opacity:1;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
+         d="m 43.5,37.5 c 0,4.970563 -4.029437,9 -9,9 -4.970563,0 -9,-4.029437 -9,-9 0,-4.970563 4.029437,-9 9,-9 4.970563,0 9,4.029437 9,9 z"
+         id="path18" />
+      <path
+         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:url(#radialGradient12);stroke:none;stroke-linejoin:bevel;stroke-miterlimit:2;stroke-opacity:1;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
+         d="m 43.5,37.5 c 0,4.970563 -4.029437,9 -9,9 -4.970563,0 -9,-4.029437 -9,-9 0,-4.970563 4.029437,-9 9,-9 4.970563,0 9,4.029437 9,9 z"
+         id="path19" />
+      <path
+         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#500000;fill-opacity:1;stroke-linejoin:bevel;stroke-miterlimit:2;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
+         d="m 34.5,27.5 c -5.511003,0 -10,4.488997 -10,10 0,5.511003 4.488997,10 10,10 5.511003,0 10,-4.488997 10,-10 0,-5.511003 -4.488997,-10 -10,-10 z m 0,2 c 4.430123,0 8,3.569877 8,8 0,4.430123 -3.569877,8 -8,8 -4.430123,0 -8,-3.569877 -8,-8 0,-4.430123 3.569877,-8 8,-8 z"
+         id="path20" />
+    </g>
+  </g>
+</svg>
