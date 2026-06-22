@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "es2020",
+        "module": "es2020",
+        "lib": ["ES2020", "DOM"],
+        "types": ["vite/client"],
+        "skipLibCheck": true,
+
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        "verbatimModuleSyntax": true,
+        "moduleDetection": "force",
+        "noEmit": true,
+
+        "noUnusedLocals": false, // изменить на 'false' при сборке
+        "noUnusedParameters": false, // изменить на 'false' при сборке
+        "erasableSyntaxOnly": false,
+        "noFallthroughCasesInSwitch": true,
+
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    },
+    // "include": ["src"] // Я думаю, это не нужно
+}

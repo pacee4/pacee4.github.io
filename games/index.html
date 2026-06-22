@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://gstatic.com; script-src 'self'; object-src 'none';">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Игры - Сайт pacee4</title>
+        <meta name="description" content="Здесь представлены все игры, которые я создал. Все игры на этом сайте бесплатны, безопасны и не содержат рекламы.">
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+        <!-- Загрузка шрифтов из Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,600;1,400;1,600&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="/src/base_styles.css">
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+    
+    <body class="preload">
+        <!-- ШАБЛОНЫ -->
+        <template id="templateCard">
+            <li class="card">
+                <a role="presentation">
+                    <div class="image">
+                        <div class="image-fill"> </div>
+                        <div class="image-contain"> </div>
+                    </div>
+                </a>
+                    
+                <div class="content">
+                    <h2 class="header-hover"><a><span class="header"></span></a></h2>
+                    <div class="flex PI1">
+                        <p class="info"><time class="datePublished"></time></p>
+                        <div class="card-right flex PI2">
+                            <button class="buttonInfo clickable">
+                                <img src="/assets/button-info.svg" class="wh" width="26" height="26" alt="i">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </template>
+
+        <div id="visible-page">
+            <div id="headerWrapper">
+                <div id="headerPullContainer" class="flex column center-v">
+                    <header id="header">
+                        <div class="logo">
+                            <img src="/assets/logo.svg" alt="Сайт pacee4">
+                        </div>
+                        <nav>
+                            <a href="/">Главная</a>
+                            <a href="/games/" class="active">Игры</a>
+                            <a href="/projects/">Проекты</a>
+                            <a href="/gallery/">Галерея</a>
+                        </nav>
+                    </header>
+                    <button id="puller" class="flex center clickable">
+                        <img class="img-fit" src="/assets/icons/d-more.svg" alt="Меню">
+                    </button>
+                </div>
+
+                <div id="headerSpace"></div>
+            </div>
+
+            <main>
+                <div class="main-content expand">
+                    <noscript>
+                        <p>
+                            <div class="h t-center t-big-4 t-orange m bottom-2 shadow PIB1"><strong>Включите JavaScript.</strong></div>
+                            <div class="p t-center">Без него сайт не будет работать.</div>
+                        </p>
+                    </noscript>
+
+                    <section class="flex center-v column expand">
+                        <div class="main-heading">
+                            <h1>Вкладка: Игры</h1>
+                            <p>Здесь представлены все игры, которые я создал. Все игры на этом сайте бесплатны, безопасны и не содержат рекламы.</p>
+                        </div>
+
+                        <div class="cover-padding-p">
+                            <div class="cover">
+                                <ul class="grid no-bullets" id="gameCatalog">
+
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+
+            <footer>
+                <p class="info">
+                    Ссылки
+                </p>
+                <p class="info">
+                    Этот сайт работает на платформе <a href="https://pages.github.com" target="_blank">GitHub Pages</a>. GitHub Pages является дочерней компанией <a href="https://github.com" target="_blank">GitHub</a>.
+                </p>
+            </footer>
+        </div>
+
+        <div id="modal" class="hide"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="mwName"
+            aria-describedby="aria-game-description"
+        >
+            <div id="modalBackground"></div>
+            <div class="js-closeModal PI3">
+                <div id="modalFlexP" class="flex center  js-closeModal">
+                    <div id="modalWindow" class="flex column  cover shadow">
+
+                        <div id="modalInnerContent" class="mp f-extend">
+                            <h2 id="mwName" class="t-center t-big-4 m bottom-4 t-shadow"></h2>
+                            
+                            <h4 class="info m bottom-0">Категории:</h4>
+                            <ul id="mwCategories" class="info">
+                                <li data-support></li>
+                                <li></li>
+                            </ul>
+
+                            <div class="m bottom-4">
+                                <p id="mwDatePublished" class="info"></p>
+                                <p id="mwDateUpdated" class="info"></p>
+
+                                <p id="mwPoweredBy" class="info t-blue"></p>
+                            </div>
+
+                            <div id="aria-game-description">
+                                <div id="mwDDescription" class="mp m bottom-2">
+                                    <h3 class="t-big-1">Описание игры</h3>
+                                    <p id="mwDescription" class="pre-line"></p>
+                                </div>
+
+                                <div id="mwDHowToPlay" class="mp m bottom-2">
+                                    <h3 class="t-big-1">Как играть</h3>
+                                    <p id="mwHowToPlay" class="pre-line"></p>
+                                </div>
+
+                                <div id="mwDCredits" class="mp m bottom-2">
+                                    <h3 class="t-big-1">Благодарность</h3>
+                                    <p id="mwCredits" class="pre-line"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <hr class="PI4">
+                            <menu class="flex center no-bullets">
+                                <li><a id="mwAPlay">Играть</a></li>
+                                <li><button id="mwAClose">Закрыть</button></li>
+                            </menu>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <script type="module" src="/src/paint_navigation_bar.ts" defer></script>
+        <script type="module" src="script.ts" defer></script>
+    </body>
+</html>

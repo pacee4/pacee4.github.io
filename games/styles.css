@@ -1,0 +1,265 @@
+/* ГЛАВНОЕ: Каталог игр */
+
+:root {
+    --g-columns: 5;
+}
+@media (max-width: 1000px) {
+    :root {
+        --g-columns: 3;
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(var(--g-columns), minmax(80px, 200px));
+    gap: 10px;
+    justify-content: center;
+}
+
+
+.card {
+    box-sizing: content-box;
+}
+
+.card .image {
+    width: 100%;
+    aspect-ratio: 1/1;
+    position: relative;
+
+    border-radius: 15px;
+    overflow: hidden;
+
+}
+.card .image > * {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    background-position: center;
+}
+.card .image > .image-fill {
+    background-size: cover;
+    filter: blur(20px);
+    transform: scale(1.1); /* Чтобы не было видно белой границы */
+}
+.card .image > .image-contain {
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+.card > .content {
+    padding: 0px 3px 3px 3px;
+}
+.card .header-hover {
+    padding-top: 3px;
+}
+
+.card h2 {
+    font-size: 1.25rem;
+
+    /* зажим строки */
+    display: -webkit-box;
+    display: box;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    overflow-wrap: break-word;
+
+    font-family: var(--f-info), sans-serif;
+}
+.card a:hover {
+    text-decoration: underline;
+}
+
+.card a, #modal div:not(#modalInnerContent) a {
+    text-decoration: inherit;
+    color: inherit;
+
+    cursor: pointer;
+}
+
+
+.card .card-right > img {
+    height: 25px;
+}
+
+.card .card-right > *:not(:first-child) {
+    margin-left: 5px;
+}
+
+.card .buttonInfo {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+
+    width: 26px;
+    height: 26px;
+}
+
+.card .buttonInfo:active > img {
+    filter: brightness(0.5);
+}
+
+
+
+/* МОДАЛЬНОЕ ОКНО */
+/*#region*/
+#modal {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 2;
+}
+#modal > * {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+#modalFlexP {
+    width: 100%;
+    height: 100%;
+}
+
+#modalWindow {
+    width: 600px;
+    max-width: 100%;
+    max-height: 100%;
+}
+body.js-modalShow #modalWindow {
+    transform: scale(1);
+}
+#modal.js-busy #modalWindow {
+    pointer-events: none;
+}
+
+/* МОДАЛЬНОЕ ОКНО: контент */
+#modalInnerContent {
+    padding-top: 5px;
+    padding-left: 5px;
+
+    overflow-y: auto;
+}
+#modalInnerContent:not(.js-atTop) {
+    mask-image: linear-gradient(to bottom, transparent 0, black 15px);
+}
+
+#modalInnerContent ul > li[data-support="mobile"]::after {
+    content: " 📱";
+}
+#modalInnerContent ul > li[data-support="pc"]::after {
+    content: " 🖥️";
+}
+
+#modal menu li>* {
+    color: inherit;
+    font-family: var(--f-info);
+    font-size: 1rem;
+
+    box-sizing: content-box;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+
+    cursor: pointer;
+    
+    background-color: var(--c-green);
+    transition: background-color 0.3s;
+}
+#modal menu li>*:hover {
+    background-color: var(--c-light-green);
+}
+
+/* Управление переходом */
+/* Открыть */
+#modalBackground {
+    opacity: 0;
+}
+body.js-modalShow #modalBackground {
+    transition: opacity 0.3s;
+    opacity: 1;
+}
+#modalWindow {
+    transform: scale(0);
+}
+body.js-modalShow #modalWindow {
+    transition: transform 0.5s ease;
+    transform: scale(1);
+}
+
+/* Закрыть */
+#modal.js-closing #modalBackground {
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+#modal.js-closing #modalWindow {
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+
+/*#endregion*/
+
+
+
+/* ЛИЧНОЕ ПРОСТРАНСТВО */
+/*#region*/
+.PI1 {
+    justify-content: space-between;
+    align-items: center;
+}
+.PI2 {
+    align-items: center;
+}
+.PI3 {
+    padding: 5px;
+}
+.PI4 {
+    border: 1px solid var(--c-green3); margin-bottom: 15px;
+}
+#mwAPlay {
+    margin-right: 10px;
+}
+
+
+/*#endregion*/
+
+
+@media screen and ((max-width: 480px) or ((max-height: 480px) and (orientation: landscape))) {
+    #visible-page .cover {
+        padding: 10px;
+    }
+
+    .card h2 {
+        font-size: 0.8rem;
+    }
+    .card content {
+        padding: 0 1px 1px 1px;
+    }
+    .card .datePublished {
+        font-size: 0.7rem;
+    }
+
+    .card .buttonInfo {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    #visible-page .cover {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    #visible-page .grid {
+        gap: 5px;
+    }
+}

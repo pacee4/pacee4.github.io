@@ -1,0 +1,604 @@
+:root {
+    /* Определение цветов в переменные */
+    
+    --c-gray: #606060;
+    --c-lgreen: #f2f8f0;
+
+    --c-light-green: #b4e9c1;
+    --c-green: #57b640;
+    --c-green3: #0a8b06;
+
+    --c-search-blue: #0080ff;
+
+    --p-black: black;
+    --p-gray: #606060;
+    --p-white: white;
+
+    --p-lgreen: #f2f8f0;
+    --p-lgreen-t: #f2f8f0;
+    --p-green: #0a8b06;
+    --p-blue: #3030ff;
+
+    --p-shadow-blue: #00008060;
+
+    --p-folder-bg-color: #ffffe0;
+    --p-folder-b-color: #f0e398;
+
+    --j-nav-bg-h: 108;
+    --j-nav-bg-s: 48%;
+    --j-nav-base-l: 53%;
+
+    --f-heading: "Trebuchet MS", "Fira Sans", sans-serif;
+    --f-paragraph: "Noto Sans", sans-serif;
+    --f-info: "Roboto", sans-serif;
+
+
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: var(--p-white);
+    color: var(--p-black);
+}
+body.js-preload * {
+    transition: none !important;
+}
+
+#visible-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    min-height: 100dvh; /* растягивает страницу на всю высоту окна браузера */
+}
+
+/* Модальное окно */
+/*#region*/
+#modal {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 5;
+}
+#modal > * {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#modal > #modalBackground {
+    position: absolute;
+    background-color: #00000080;
+}
+#modal .cover {
+    background-color: var(--p-lgreen);
+}
+
+/* Контролируется JavaScript */
+body.js-modalShow {
+    overflow: hidden;
+    padding-right: var(--scrollbar-width, 0px);
+}
+body.js-modalShow > #visible-page {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+
+/*#endregion*/
+
+
+
+/* ВЕРХНИЙ КОЛОНТИТУЛ */
+/*#region*/
+#headerWrapper {
+    position: sticky; /* Для моб.устройств - relative/fixed */
+    top: 0;
+    max-width: 100%;
+    z-index: 1;
+
+    color: white;
+}
+#headerPullContainer {
+    position: absolute;
+    width: 100%;
+}
+#header {
+    position: relative;
+    z-index: 3;
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+
+    background-color: var(--c-green3);
+
+    padding-left: 20px;
+}
+
+#header > .logo {
+    position: relative;
+    flex: 1 0 150px;
+
+    display: flex;
+}
+#header > .logo > img {
+    pointer-events: none;
+    position: absolute;
+    height: 115%;
+}
+
+#puller {
+    display: none;
+
+    position: relative;
+    z-index: 2;
+
+    transition: transform 0.5s ease;
+    transform: translateY(-100%);
+
+    background-color: var(--c-gray);
+    width: 100px;
+    height: 30px;
+    padding: 4px;
+
+    border: 2px outset var(--c-gray);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+}
+#puller:active {
+    border-style: inset;
+    border-top: none;
+}
+
+#headerSpace {
+    height: var(--space-height, 43px);
+}
+
+
+/*#endregion*/
+
+
+/* НАВИГАЦИЯ */
+/*#region*/
+
+nav {
+    flex-shrink: 1;
+    width: 32rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+nav > a {
+    flex: 1;
+
+    display: block;
+    text-align: center;
+
+    /* Эти переменные управляются JavaScript */
+    background-color: hsl(
+        var(--j-nav-bg-h),
+        var(--j-nav-bg-s),
+        calc(var(--j-nav-base-l) - (var(--distance, 1) * 5%))
+    );
+
+    transition: background-color 0.3s, color 0.3s;
+
+    padding: 10px 0;
+    font-size: 1.25rem;
+    font-size: min(4.5cqw, 1.25rem);
+    font-weight: bold;
+
+    text-decoration: none;
+    color: white;
+}
+nav > a:not(.active):hover {
+    background-color: var(--c-light-green);
+    color: var(--c-green);
+}
+nav > a.active {
+    background-color: var(--c-lgreen);
+    color: var(--c-green);
+}
+
+
+/*#endregion*/
+
+
+/* ГЛАВНАЯ */
+/*#region*/
+main {
+    flex-grow: 1;
+    position: relative;
+
+    width: 100%;
+}
+main::before {
+    /* Фон для всей страницы */
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100lvh); /* чтобы не было оставшейся части фона в мобильном браузере */
+    z-index: -1;
+
+    background-image: url("/assets/site-background.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 5px 0;
+}
+main > .main-content > * {
+    padding-left: 30px;
+    padding-right: 30px;
+
+    max-width: 1280px;
+}
+.expand {
+    width: 100%;
+}
+.expand > * {
+    max-width: 100%;
+}
+
+
+/* ГЛАВНАЯ: Контент */
+.main-heading {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+h1 {
+    font-size: 2.5rem;
+    margin-top: 2rem;
+
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.mp > *:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+summary {
+    font-weight: bold;
+
+    cursor: pointer;
+}
+summary:hover {
+    text-decoration: underline;
+}
+
+.cover-padding-p {
+    padding-bottom: 30px;
+}
+.cover {
+    background-color: var(--p-lgreen-t);
+
+    border-radius: 25px;
+    padding: 15px;
+}
+.cover.shadow {
+    box-shadow: 5px 5px 15px black;
+}
+
+
+/*#endregion*/
+
+
+/* НИЖНИЙ КОЛОНТИТУЛ */
+/*#region*/
+footer {
+    background-color: var(--c-gray);
+    color: white;
+
+    padding: 0.5rem;
+}
+
+footer *{
+    text-align: center;
+    font-size: small;
+}
+footer a{
+    color: #ccccff;
+}
+/*#endregion*/
+
+
+/* ТЁМНАЯ ТЕМА */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --p-black: white;
+        --p-white: black;
+        --p-lgreen: #516957;
+        --p-lgreen-t: #516957cc;
+        --p-gray: #909090;
+        --p-green: #57b640;
+        --p-blue: #1010e0;
+        --p-shadow-blue: #8080ffff;
+        --p-folder-bg-color: #505028;
+        --p-folder-b-color: #ccba55;
+    }
+
+    main::before {
+        filter: brightness(0.3);
+    }
+}
+
+/* АДАПТАЦИЯ ПОД МОБИЛЬНОЕ УСТРОЙСТВО */
+/*#region*/
+
+@media screen and ((max-width: 480px) or ((max-height: 480px) and (orientation: landscape))) {
+    /* Размеры шрифтов */
+    h1 {
+        font-size: 2rem;
+    }
+
+    #puller {
+        display: flex; /* включить видимость */
+    }
+
+    /* Управление видимостью и переходом */
+    #headerWrapper.js-transition #headerPullContainer {
+        transition: transform 0.5s ease;
+    }
+    #headerWrapper:not(.js-pullerShow) #puller {
+        pointer-events: none;
+    }
+
+    /* Когда страница прокручена вниз */
+    #headerWrapper.js-pullerShow #headerPullContainer {
+        position: fixed;
+    }
+
+    #headerWrapper.js-pullerShow #header {
+        border-bottom: 2px solid black;
+    }
+
+    #headerWrapper.js-pullerShow #puller {
+        transform: translateY(0);
+    }
+    #headerWrapper.js-pullerShow:not(.js-open) #headerPullContainer {
+        transform: translateY(calc(-1 * var(--space-height, 43px)));
+    }
+}
+/* Вертикальная ориентация */
+@media screen and (max-width: 480px) {
+    #headerWrapper {
+        position: relative;
+    }
+    #header {
+        position: relative;
+
+        padding-left: 0px;
+    }
+    #header > .logo {
+        flex: 1 0 45px;
+        justify-content: center;
+    }
+    #header {
+        flex-direction: column;
+    }
+    #header > .logo {
+        padding-left: 0;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    nav {
+        width: 100%;
+    }
+
+    main > .main-content > * {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+/* Горизонтальная ориентация */
+@media screen and ((max-height: 480px) and (orientation: landscape)) {
+
+}
+/*#endregion*/
+
+
+/* ШРИФТЫ */
+/*#region*/
+
+/* Заголовки и подзаголовки */
+h1, h2, h3, h4, .h, nav a {
+    font-family: var(--f-heading);
+}
+/* Параграфы */
+p, .p, details, summary {
+    font-family: var(--f-paragraph);
+}
+/* Информация */
+.info, button {
+    font-family: var(--f-info);
+}
+/* Green italic humanist font */
+.date-period {
+    font-family: var(--f-heading);
+    font-style: italic;
+    color: var(--p-green);
+}
+/* Форма */
+form input, form button {
+    /* Системный шрифт */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+
+/*#endregion*/
+
+
+/* ОБЩЕЕ */
+/*#region*/
+.hide {
+    display: none !important;
+}
+.switch > *:not(.show) {
+    display: none !important;
+}
+
+.flex {
+    display: flex;
+    align-items: stretch;
+}
+.flex.column {
+    flex-direction: column;
+}
+.flex.center-h {
+    justify-content: center;
+}
+.flex.center-v {
+    align-items: center;
+}
+.flex.center {
+    justify-content: center;
+    align-items: center;
+}
+.flex.space-between {
+    justify-content: space-between;
+}
+.flex > .f-extend {
+    flex-grow: 1;
+}
+
+.relative {
+    position: relative;
+}
+.absolute {
+    position: absolute;
+}
+.wh {
+    width: 100%;
+    height: 100%;
+}
+
+.regular {
+    font-weight: normal;
+}
+.bold {
+    font-weight: bold;
+}
+.italic {
+    font-style: italic;
+}
+.t-shadow {
+    text-shadow: 0.05em 0.05em 0.1em var(--p-shadow-blue);
+}
+.t-big-1 {
+    font-size: 1.25rem;
+}
+.t-big-2 {
+    font-size: 1.5rem;
+}
+.t-big-3 {
+    font-size: 1.75rem;
+}
+.t-big-4 {
+    font-size: 2rem;
+}
+.t-center {
+    text-align: center;
+}
+.t-gray {
+    color: var(--p-gray);
+}
+.t-green {
+    color: var(--c-green);
+}
+.t-light-green {
+    color: var(--c-light-green);
+}
+.t-blue {
+    color: var(--p-blue);
+}
+.t-orange {
+    color: #e09000;
+}
+.t-white {
+    color: white;
+}
+
+
+.m.bottom-0 {
+    margin-bottom: 0 !important;
+}
+.m.bottom-2 {
+    margin-bottom: 0.5rem !important;
+}
+.m.bottom-4 {
+    margin-bottom: 1rem !important;
+}
+.m.bottom-6 {
+    margin-bottom: 1.5rem !important;
+}
+.m.top-4 {
+    margin-top: 1rem !important;
+}
+.m.right-4px {
+    margin-right: 4px !important;
+}
+
+ul.no-bullets, menu.no-bullets {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.clickable {
+    cursor: pointer;
+}
+.unselectable {
+    user-select: none;
+    -webkit-user-select: none;
+}
+img {
+    display: block;
+}
+img.icon {
+    user-select: none;
+    -webkit-user-select: none;
+}
+img.img-fit {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+img.icon.inv {
+    filter: invert(100%);
+}
+
+.pre-line {
+    white-space: pre-line;
+}
+
+
+/*#endregion*/
+
+/* ЛИЧНОЕ ПРОСТРАНСТВО */
+/*#region*/
+.PIB1 {
+    margin-top: 2rem;
+}
+
+/*#endregion*/

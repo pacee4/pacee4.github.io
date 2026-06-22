@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="50"
+   height="50"
+   viewBox="0 0 50 50"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1">
+    <g
+       id="g2">
+      <path
+         style="baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;stroke-linecap:round;stroke-linejoin:round;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
+         d="M 21,4 C 11.646693,4 4,11.646693 4,21 4,30.353307 11.646693,38 21,38 30.353307,38 38,30.353307 38,21 38,11.646693 30.353307,4 21,4 Z m 0,6 c 6.110666,0 11,4.889334 11,11 0,6.110666 -4.889334,11 -11,11 -6.110666,0 -11,-4.889334 -11,-11 0,-6.110666 4.889334,-11 11,-11 z"
+         id="path1" />
+      <path
+         style="baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;stroke-linecap:round;stroke-linejoin:round;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
+         d="m 31,28 a 3,3 0 0 0 -2.121094,0.878906 3,3 0 0 0 0,4.242188 l 12,12 a 3,3 0 0 0 4.242188,0 3,3 0 0 0 0,-4.242188 l -12,-12 A 3,3 0 0 0 31,28 Z"
+         id="path2" />
+    </g>
+  </g>
+</svg>

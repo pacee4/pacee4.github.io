@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://gstatic.com; script-src 'self'; object-src 'none';">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Проекты - Сайт pacee4</title>
+        <meta name="description" content="Скоро будет!">
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+        <!-- Загрузка шрифтов из Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,600;1,400;1,600&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="/src/base_styles.css">
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+    
+    <body class="preload">
+        <div id="visible-page">
+            <div id="headerWrapper">
+                <div id="headerPullContainer" class="flex column center-v">
+                    <header id="header">
+                        <div class="logo">
+                            <img src="/assets/logo.svg" alt="Сайт pacee4">
+                        </div>
+                        <nav>
+                            <a href="/">Главная</a>
+                            <a href="/games/">Игры</a>
+                            <a href="/projects/" class="active">Проекты</a>
+                            <a href="/gallery/">Галерея</a>
+                        </nav>
+                    </header>
+                    <button id="puller" class="flex center clickable">
+                        <img class="img-fit" src="/assets/icons/d-more.svg" alt="Меню">
+                    </button>
+                </div>
+
+                <div id="headerSpace"></div>
+            </div>
+
+            <main>
+                <div class="main-content">
+                    <noscript>
+                        <p>
+                            <div class="h t-center t-big-4 t-orange m bottom-2 shadow PIB1"><strong>Включите JavaScript.</strong></div>
+                            <div class="p t-center">Без него сайт не будет работать.</div>
+                        </p>
+                    </noscript>
+
+                    <section>
+                        <div class="main-heading">
+                            <h1>Вкладка: Проекты</h1>
+                        </div>
+
+                        <ul class="m bottom-6">
+                            <li><a href="tutorship_quiz" class="info">1-Игровая модель наставничества</a></li>
+                        </ul>
+                        
+                        <p class="h bold t-big-2 t-center t-shadow PI1">Скоро будет!</p>
+                    </section>
+                </div>
+            </main>
+
+            <footer>
+                <p class="info">
+                    Ссылки
+                </p>
+                <p class="info">
+                    Этот сайт работает на платформе <a href="https://pages.github.com" target="_blank">GitHub Pages</a>. GitHub Pages является дочерней компанией <a href="https://github.com" target="_blank">GitHub</a>.
+                </p>
+            </footer>
+        </div>
+
+        <script type="module" src="/src/paint_navigation_bar.ts" defer></script>
+        <script type="module" src="script.ts" defer></script>
+    </body>
+</html>
