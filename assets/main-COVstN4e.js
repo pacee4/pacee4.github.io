@@ -1,0 +1,1 @@
+import"./paint_navigation_bar-CAlb37qy.js";import{m as e,u as t}from"./base_script-ButWnKi-.js";{let n=document.getElementById(`vcDatePeriod`),r=t(`22.05.2006`),i=r.years,a=`${i} ${e(i,`год`,`года`,`лет`)}`;r.days===0?(n.textContent=`(${a}!)`,n.classList.add(`js-animatedDatePeriod`)):n.textContent=`(${a})`}

@@ -1,0 +1,85 @@
+[
+    {
+        "name": "Ошеломляющая викторина Часть 2",
+        "src": "/game_stunning_quiz_2",
+        "date_published": "21.06.2026",
+        "date_updated": "22.05.2026",
+        "thumb_src": "thumbnails/stunning_quiz_2.webp",
+        
+        "details": {
+            "categories": {
+                "length": "plot",
+                "other": ["викторина"]
+            },
+            "powered_by": "pixijs",
+            "how_to_play": "Дорогой игрок! Это продолжение рубрики ошеломляющей викторины! Чтобы ответить на вопросы, всё, что вам нужно - это *мыслить нестандартно*! Сможете ли вы ответить на *40* вопросов, не потеряв при этом 5 жизней? Попыток в этой игре - *бесконечное количество*, это вам не монеты вставлять в игровой автомат.\nНу что ж,\n**УДАЧИ!**"
+        }
+    },
+    {
+        "name": "Разрушь!",
+        "src": "/game_collapse",
+        "date_published": "21.06.2026",
+        "date_updated": "08.03.2026",
+        "thumb_src": "thumbnails/game_collapse.webp",
+        
+        "details": {
+            "categories": {
+                "support": "all",
+                "length": "minigame",
+                "other": ["экшен", "головоломка"]
+            },
+            "how_to_play": "Щёлкните по куче из трёх или более блоков одного цвета, чтобы её уничтожить. Уничтожайте блоки, пока они не дойдут до потолка!"
+        }
+    },
+    {
+        "name": "Pick Colors",
+        "src": "/game_pick_colors",
+        "date_published": "21.06.2026",
+        "date_updated": "01.01.2026",
+        "thumb_src": "thumbnails/pick_colors.webp",
+        
+        "details": {
+            "categories": {
+                "support": "all",
+                "length": "minigame",
+                "other": ["головоломка"]
+            },
+            "powered_by": "turbowarp",
+            "how_to_play": "Вам следует выбирать тот цвет, который написан на экране.\nЕсли у вас дальтонизм, то эта игра **не для вас**"
+        }
+    },
+    {
+        "name": "Ошеломляющая викторина Часть 1",
+        "src": "/game_stunning_quiz_1",
+        "date_published": "21.06.2026",
+        "date_updated": "16.08.2025",
+        "thumb_src": "thumbnails/stunning_quiz_1.webp",
+        
+        "details": {
+            "categories": {
+                "support": "all",
+                "length": "plot",
+                "other": ["викторина"]
+            },
+            "powered_by": "turbowarp",
+            "how_to_play": "Дорогой игрок! Эта викторина необычная и коварная, и её на самом деле возможно пройти! Чтобы ответить на вопросы, всё, что вам нужно - это *мыслить нестандартно*! Сможете ли вы ответить на *30* вопросов, не потеряв при этом 5 жизней? Попыток в этой игре - *бесконечное количество*, это вам не монеты вставлять в игровой автомат.\nНу что ж,\n**УДАЧИ!**"
+        }
+    },
+    {
+        "name": "Поймай яблоки!",
+        "src": "/game_catch_the_apples",
+        "date_published": "21.06.2026",
+        "date_updated": "04.08.2025",
+        "thumb_src": "thumbnails/catch_the_apples.webp",
+        
+        "details": {
+            "categories": {
+                "support": "all",
+                "length": "minigame",
+                "other": ["экшен"]
+            },
+            "powered_by": "turbowarp",
+            "how_to_play": "В этой игре вам нужно собрать как можно больше яблок, падающих с дерева, и не дать им упасть на землю, иначе игра закончится!"
+        }
+    }
+]

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://gstatic.com; script-src 'self'; object-src 'none';">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Галерея - Сайт pacee4</title>
+        <meta name="description" content="Здесь представлены мои произведения и зарисовки, снятые с камеры смартфона.">
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+        <!-- Загрузка шрифтов из Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,600;1,400;1,600&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+
+      <script type="module" crossorigin src="/assets/gallery-DbnhX1gh.js"></script>
+      <link rel="modulepreload" crossorigin href="/assets/paint_navigation_bar-CAlb37qy.js">
+      <link rel="modulepreload" crossorigin href="/assets/base_script-ButWnKi-.js">
+      <link rel="stylesheet" crossorigin href="/assets/paint_navigation_bar-BShvRQih.css">
+      <link rel="stylesheet" crossorigin href="/assets/gallery-BpVVoL8b.css">
+    </head>
+    
+    <body class="js-preload">
+        <!-- ШАБЛОН РАЗДЕЛА -->
+        <template id="templateSection">
+            <div class="cover-padding-p">
+                <section class="cover">
+                    <div class="top mp m bottom-4 t-center">
+                        <h2 class="heading t-big-3"></h2>
+                    </div>
+                    <div class="content"></div>
+                </section>
+            </div>
+        </template>
+        <!-- ШАБЛОН КАРТОЧКИ -->
+        <template id="templateCard">
+            <figure class="card card-image">
+                <img class="clickable image" src="" alt="">
+                <figcaption class="name-p"><span class="clickable name"></span></figcaption>
+            </figure>
+        </template>
+        <!-- ШАБЛОН КАРТОЧКИ: "Все картинки" -->
+        <template id="templateCardAllPictures">
+            <button class="card all-pictures  clickable no-frame" id="bAllPictures">
+                <div class="gradient"></div>
+                <div class="whole-content  flex column">
+                    <div class="icon-picture-p  flex center">
+                        <img class="icon icon-picture" src="/assets/icons/d-picture.svg" alt="">
+                    </div>
+
+                    <div class="t-center name-p name">Все картинки <span class="regular count"></span></div>
+                </div>
+            </button>
+        </template>
+        <!-- ШАБЛОН ПАПКИ -->
+        <template id="templateFolder">
+            <li class="folder  flex clickable">
+                <div class="icon-folder-p">
+                    <img class="icon icon-folder" src="/assets/icons/g-folder.svg">
+                </div>
+                <div class="f-extend  flex column space-between">
+                    <h3 class="t-big-2 name"></h3>
+                    <p class="count"></p>
+                </div>
+            </li>
+        </template>
+
+
+        
+        
+        <div id="visible-page">
+            <div id="headerWrapper">
+                <div id="headerPullContainer" class="flex column center-v">
+                    <header id="header">
+                        <div class="logo">
+                            <img src="/assets/logo.svg" alt="Сайт pacee4">
+                        </div>
+                        <nav>
+                            <a href="/">Главная</a>
+                            <a href="/games/">Игры</a>
+                            <a href="/projects/">Проекты</a>
+                            <a href="/gallery/" class="active">Галерея</a>
+                        </nav>
+                    </header>
+                    <button id="puller" class="flex center clickable">
+                        <img class="img-fit" src="/assets/icons/d-more.svg" alt="Меню">
+                    </button>
+                </div>
+
+                <div id="headerSpace"></div>
+            </div>
+
+            <main>
+                <div class="main-content expand">
+                    <noscript>
+                        <p>
+                            <div class="h t-center t-big-4 t-orange m bottom-2 shadow PIB1"><strong>Включите JavaScript.</strong></div>
+                            <div class="p t-center">Без него сайт не будет работать.</div>
+                        </p>
+                    </noscript>
+
+                    <section class="flex column center-v expand">
+
+                        <div class="main-heading">
+                            <h1>Вкладка: Галерея</h1>
+
+                            <details id="headingDetails">
+                                <summary>Описание</summary>
+                                <p>Здесь представлены мои произведения и зарисовки, снятые с камеры смартфона.</p>
+                            </details>
+                        </div>
+
+                        <!-- ПОИСК -->
+                        <div class="flex center-h cover-padding-p">
+                            <form method="GET" id="formSearch" class="flex stretch">
+                                <input id="inpSearch" name="search" type="search" placeholder="Поиск..." autocomplete="off">
+                                <button id="inpSubmit" class="clickable switch" type="submit">
+                                    <img class="icon show" src="/assets/icons/search.svg" alt="Найти">
+                                    <img class="icon" src="/assets/icons/close.svg" alt="Закрыть">
+                                </button>
+                            </form>
+                        </div>
+
+                        
+                        <div id="galleryCatalog">
+                            
+                        </div>
+                        
+                    </section>
+                </div>
+            </main>
+
+            <footer>
+                <p class="info">
+                    Ссылки
+                </p>
+                <p class="info">
+                    Этот сайт работает на платформе <a href="https://pages.github.com" target="_blank">GitHub Pages</a>. GitHub Pages является дочерней компанией <a href="https://github.com" target="_blank">GitHub</a>.
+                </p>
+            </footer>
+        </div>
+
+        <!-- Допустимые классы: hide, slideshow -->
+        <div id="modal" class="hide"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="mwName"
+            aria-describedby="aria-image-description"
+        >
+            <div id="modalBackground"></div>
+
+            <div id="modalContent" class="absolute">
+                <div id="mwSlider" class="wh">
+                    <div class="e-left">
+                        <img src="" alt="" draggable="false">
+                    </div>
+                    <div class="e-right">
+                        <img src="" alt="" draggable="false">
+                    </div>
+                    <div class="e-center">
+                        <img id="aria-image-description" src="" alt="" draggable="false" fetchpriority="high">
+                    </div>
+                </div>
+
+                <button id="mwBClose" class="clickable">
+                    <img class="icon inv" src="/assets/icons/close.svg" alt="Закрыть">
+                </button>
+
+                <button id="mwBLeft" class="clickable">
+                    <img class="icon inv" src="/assets/icons/d-angle-left.svg" alt="Влево">
+                </button>
+
+                <button id="mwBRight" class="clickable">
+                    <img class="icon inv" src="/assets/icons/d-angle-right.svg" alt="Вправо">
+                </button>
+
+                <div id="mwCaption">
+                    <h2 id="mwName" class="t-big-4 info"></h2>
+                    <p id="mwDate" class="m bottom-2 info"></p>
+                    <details id="mwDescriptionP" class="p m bottom-2">
+                        <summary>Описание</summary>
+                        <p id="mwDescription" class="pre-line">Описание картинки</p>
+                    </details>
+                    <div id="mwDivTags">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
