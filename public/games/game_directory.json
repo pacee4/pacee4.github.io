@@ -1,7 +1,7 @@
 [
     {
         "name": "Ошеломляющая викторина Часть 2",
-        "src": "/games/stunning_quiz_2",
+        "src": "/game_stunning_quiz_2",
         "date_published": "21.06.2026",
         "date_updated": "22.05.2026",
         "thumb_src": "thumbnails/stunning_quiz_2.webp",
@@ -17,7 +17,7 @@
     },
     {
         "name": "Разрушь!",
-        "src": "/games/game_collapse",
+        "src": "/game_collapse",
         "date_published": "21.06.2026",
         "date_updated": "08.03.2026",
         "thumb_src": "thumbnails/game_collapse.webp",
@@ -33,7 +33,7 @@
     },
     {
         "name": "Pick Colors",
-        "src": "/games/pick_colors",
+        "src": "/game_pick_colors",
         "date_published": "21.06.2026",
         "date_updated": "01.01.2026",
         "thumb_src": "thumbnails/pick_colors.webp",
@@ -50,7 +50,7 @@
     },
     {
         "name": "Ошеломляющая викторина Часть 1",
-        "src": "/games/stunning_quiz_1",
+        "src": "/game_stunning_quiz_1",
         "date_published": "21.06.2026",
         "date_updated": "16.08.2025",
         "thumb_src": "thumbnails/stunning_quiz_1.webp",
@@ -67,7 +67,7 @@
     },
     {
         "name": "Поймай яблоки!",
-        "src": "/games/catch_the_apples",
+        "src": "/game_catch_the_apples",
         "date_published": "21.06.2026",
         "date_updated": "04.08.2025",
         "thumb_src": "thumbnails/catch_the_apples.webp",
