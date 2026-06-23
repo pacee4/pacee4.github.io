@@ -280,8 +280,10 @@ h1 {
 
 summary {
     font-weight: bold;
-
     cursor: pointer;
+}
+summary > * {
+    display: inline;
 }
 summary:hover {
     text-decoration: underline;
@@ -311,16 +313,32 @@ footer {
     color: white;
 
     padding: 0.5rem;
-}
 
-footer *{
     text-align: center;
     font-size: small;
 }
+
 footer a{
     color: #ccccff;
 }
+
+.links {
+    margin-bottom: 0.25rem;
+}
+.links > a{
+    text-decoration: none;
+}
+.links > a span {
+    text-decoration: underline;
+}
+.links img {
+    display: inline;
+    height: 1em;
+}
 /*#endregion*/
+
+
+
 
 
 /* ТЁМНАЯ ТЕМА */
@@ -329,7 +347,7 @@ footer a{
         --p-black: white;
         --p-white: black;
         --p-lgreen: #516957;
-        --p-lgreen-t: #516957cc;
+        --p-lgreen-t: #424e46cc;
         --p-gray: #909090;
         --p-green: #57b640;
         --p-blue: #1010e0;

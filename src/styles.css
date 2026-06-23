@@ -30,7 +30,7 @@
     width: 550px;
 }
 .js-animatedDatePeriod {
-    animation: 5s linear infinite running rainbow;
+    animation: 5s linear infinite running anim-rainbow;
 }
 
 /* ГЛАВНАЯ: Элемент фото */
@@ -47,7 +47,7 @@
 }
 .photo-el {
     /* Элемент будет уменьшаться вместе с визитной карточкой */
-    width: 300px;
+    width: 120px;
     aspect-ratio: 1/1;
     position: relative;
 
@@ -62,13 +62,9 @@
     position: absolute;
 }
 .photo {
-    background-image: url("/assets/photo_placeholder.svg");
+    background-image: url("/assets/me.webp");
     background-repeat: no-repeat;
     background-size: cover;
-}
-
-.inline {
-    display: inline;
 }
 
 
@@ -89,6 +85,19 @@
 
 /*#endregion*/
 
+
+.PI1 {
+    font-size: small;
+    color: #cccccc;
+}
+.PI2 {
+    border: 1px solid var(--c-green3);
+}
+@media screen and (prefers-color-scheme: dark) {
+    .PI1 {
+        color: #333333;
+    }
+}
 
 
 /* Вертикальная ориентация */
