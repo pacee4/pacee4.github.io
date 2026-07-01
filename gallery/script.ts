@@ -1616,7 +1616,8 @@ B.loadJSON("gallery_directory.json")
 })
 .catch((e)=>{
     // не удалось загрузить файл
-    console.error(e);alert(e);
+    console.error(e);
+    el.galleryCatalog.appendChild(B.createEl("p", {class:"t-center", text: "Не удалось загрузить каталог"}));
 });
 
 

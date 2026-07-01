@@ -15,8 +15,7 @@ class ModalS extends B.AModal {
         howToPlay: document.getElementById("mwHowToPlay") as HTMLParagraphElement,
         DCredits: document.getElementById("mwDCredits") as HTMLDivElement,
         credits: document.getElementById("mwCredits") as HTMLParagraphElement,
-        APlay: document.getElementById("mwAPlay") as HTMLAnchorElement,
-        AClose: document.getElementById("mwAClose") as HTMLAnchorElement
+        APlay: document.getElementById("mwAPlay") as HTMLAnchorElement
     }
     
     openFunction(entry: GameDirectoryEntry) {
@@ -178,7 +177,7 @@ class ModalS extends B.AModal {
         // Добавить обработчики событий
 
         // кнопка "Закрыть"
-        this.mw.AClose.addEventListener("click", ()=>{
+        document.getElementById("mwAClose")!.addEventListener("click", ()=>{
             this.close();
         });
 
@@ -262,5 +261,8 @@ B.loadJSON("game_directory.json")
 })
 .catch((e)=>{
     // не удалось загрузить файл
-    console.error(e);alert(e);
+    console.error(e);
+    const elGameCatalogP = document.getElementById("gameCatalogP")!;
+    elGameCatalogP.textContent = "";
+    elGameCatalogP.appendChild(B.createEl("p", {class:"t-center", text: "Не удалось загрузить каталог"}));
 });

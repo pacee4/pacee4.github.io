@@ -86,10 +86,6 @@
 /*#endregion*/
 
 
-.PI1 {
-    font-size: small;
-    color: #cccccc;
-}
 .PI2 {
     border: 1px solid var(--c-green3);
 }
