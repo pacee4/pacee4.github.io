@@ -19,50 +19,49 @@
 }
 
 /* Форма */
-/*#region*/
 #formSearch {
     height: 2rem;
     max-width: 100%;
+
+    > * {
+        font-size: 1rem;
+    }
+
+    #inpSearch {
+        padding: 0;
+        padding-left: 0.2em;
+
+        width: 300px;
+
+        border: var(--border-size) solid #909090;
+        border-right: none;
+        border-radius: 4px 0 0 4px;
+        outline: none;
+
+        color: black;
+    }
+    #inpSearch:focus {
+        border-color: var(--c-search-blue);
+    }
+
+    #inpSubmit {
+        padding: 1px 4px;
+
+        background-color: #71b1f5;
+        border: var(--border-size) solid var(--c-search-blue);
+        border-radius: 0 4px 4px 0;
+
+        transition: background-color 0.3s;
+    }
+    #inpSubmit:hover {
+        background-color: var(--c-search-blue);
+    }
+
+    #inpSubmit > img {
+        height: 100%;
+    }
 }
-#formSearch > * {
-    font-size: 1rem;
-}
 
-
-#inpSearch {
-    padding: 0;
-    padding-left: 0.2em;
-
-    width: 300px;
-
-    border: var(--border-size) solid #909090;
-    border-right: none;
-    border-radius: 4px 0 0 4px;
-    outline: none;
-
-    color: black;
-}
-#inpSearch:focus {
-    border-color: var(--c-search-blue);
-}
-
-#inpSubmit {
-    padding: 1px 4px;
-
-    background-color: #71b1f5;
-    border: var(--border-size) solid var(--c-search-blue);
-    border-radius: 0 4px 4px 0;
-
-    transition: background-color 0.3s;
-}
-#inpSubmit:hover {
-    background-color: var(--c-search-blue);
-}
-
-#inpSubmit > img {
-    height: 100%;
-}
-/*#endregion*/
 
 
 
@@ -198,35 +197,31 @@
 
 
 /* Список папок */
-/*#region*/
-
-
 .folder {
     background-color: var(--p-folder-bg-color);
     border: var(--border-size) solid var(--p-folder-b-color);
     border-radius: 15px;
 
     transition: background-color 0.3s;
-}
-.folder:not(:last-child) {
-    margin-bottom: 10px;
-}
 
-.folder:hover {
-    background-color: var(--p-folder-b-color);
-}
+    &:not(:last-child) {
+        margin-bottom: 10px;
+    }
 
-.folder .icon-folder-p {
-    margin: 0 5px;
-}
-.folder .icon-folder {
-    height: 3.5rem;
-}
-.folder .count {
-    margin-bottom: 2px;
-}
+    &:hover {
+        background-color: var(--p-folder-b-color);
+    }
 
-/*#endregion*/
+    .icon-folder-p {
+        margin: 0 5px;
+    }
+    .icon-folder {
+        height: 3.5rem;
+    }
+    .count {
+        margin-bottom: 2px;
+    }
+}
 
 
 /* Теги */
@@ -269,68 +264,102 @@ button.no-frame {
 
 
 /* Модальное окно: Слайд-шоу */
-/*#region*/
 
 #modalContent {
     touch-action: none;
-}
-#modalContent > * {
-    position: absolute;
+
+    > * {
+        position: absolute;
+    }
+
+    /* Надпись над изображением */
+    #mwCaption {
+        bottom: 0;
+        width: 100%;
+        max-height: 100%; /* включение прокрутки при переполнении контента */
+
+        background-color: #404040c0;
+        color: white;
+        padding: 10px 5px 10px 10px;
+    }
+    #mwCaption:has(details[open]) {
+        background-color: #404040f0;
+    }
+
+    /* Кнопки */
+    > button {
+        padding: 0;
+        border: none;
+
+        border-radius: 15px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: transparent;
+        transition: background-color 0.3s;
+    }
+    > button:hover {
+        background-color: #00000080;
+    }
+
+    #mwBClose {
+        width: 60px;
+        height: 60px;
+        right: 5px;
+        top: 5px;
+    }
+    #mwBLeft, #mwBRight {
+        width: 50px;
+        height: 100px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    #mwBLeft { left: 0; }
+    #mwBRight { right: 0; }
 }
 
 #mwSlider {
     will-change: transform;
-}
 
-#mwSlider > * {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    > * {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-    overflow: hidden;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-#mwSlider > .e-left {
-    transform: translateX(-100%);
-}
-#mwSlider > .e-right {
-    transform: translateX(100%);
-}
+        overflow: hidden;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    > .e-left {
+        transform: translateX(-100%);
+    }
+    > .e-right {
+        transform: translateX(100%);
+    }
 
-#mwSlider img {
-    position: absolute;
+    img {
+        position: absolute;
 
-    color: white;
-    max-width: 100%;
-    max-height: 100%;
+        color: white;
+        max-width: 100%;
+        max-height: 100%;
 
-    touch-action: none;
-    user-select: none;
-    -webkit-user-select: none;
-    /* user-drag: none; */
-    -webkit-user-drag: none;
-}
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
+        /* user-drag: none; */
+        -webkit-user-drag: none;
+    }
 
-#mwSlider img.js-draggable {
-    cursor: grab;
-}
-#mwSlider img.js-draggable:active {
-    cursor: grabbing;
-}
-
-#mwCaption {
-    bottom: 0;
-    width: 100%;
-    max-height: 100%; /* включение прокрутки при переполнении контента */
-
-    background-color: #404040c0;
-    color: white;
-    padding: 10px 5px 10px 10px;
-}
-#mwCaption:has(details[open]) {
-    background-color: #404040f0;
+    img.js-draggable {
+        cursor: grab;
+    }
+    img.js-draggable:active {
+        cursor: grabbing;
+    }
 }
 
 #modal.slideshow #modalBackground {
@@ -340,41 +369,8 @@ button.no-frame {
     display: none;
 }
 
-
-#modalContent > button {
-    padding: 0;
-    border: none;
-
-    border-radius: 15px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: transparent;
-    transition: background-color 0.3s;
-}
-#modalContent > button:hover {
-    background-color: #00000080;
-}
-
-#modalContent > #mwBClose {
-    width: 60px;
-    height: 60px;
-    right: 5px;
-    top: 5px;
-}
-#mwBLeft, #mwBRight {
-    width: 50px;
-    height: 100px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-#mwBLeft { left: 0; }
-#mwBRight { right: 0; }
-
-
 /* Управление переходом */
+/*#region*/
 /* Начальное состояние */
 #modalBackground {
     transition: opacity 0.3s;
@@ -431,19 +427,21 @@ body.js-modalShow #modalContent {
         font-size: 0.9rem;
     }
 
-    #modalContent > button:hover {
-        background-color: inherit;
-    }
-    #modalContent > button:active {
-        background-color: #00000080;
-    }
+    #modal #modalContent {
+        > button:hover {
+            background-color: inherit;
+        }
+        > button:active {
+            background-color: #00000080;
+        }
 
-    #modalContent #mwBLeft, #modalContent #mwBRight {
-        opacity: 0;
-        transition: background-color 0.3s, opacity 0.3s;
-    }
-    #modalContent #mwBLeft:active, #modalContent #mwBRight:active {
-        opacity: 1;
+        #mwBLeft, #mwBRight {
+            opacity: 0;
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+        #mwBLeft:active, #mwBRight:active {
+            opacity: 1;
+        }
     }
 }
 

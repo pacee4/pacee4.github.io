@@ -107,11 +107,13 @@ body.js-modalShow > #visible-page {
     z-index: 1;
 
     color: white;
+
+    #headerPullContainer {
+        position: absolute;
+        width: 100%;
+    }
 }
-#headerPullContainer {
-    position: absolute;
-    width: 100%;
-}
+
 #header {
     position: relative;
     z-index: 3;
@@ -171,8 +173,6 @@ body.js-modalShow > #visible-page {
 
 
 /* НАВИГАЦИЯ */
-/*#region*/
-
 nav {
     flex-shrink: 1;
     width: 32rem;
@@ -180,79 +180,78 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: center;
+
+
+    > a {
+        flex: 1;
+
+        display: block;
+        text-align: center;
+
+        /* Эти переменные управляются JavaScript */
+        background-color: hsl(
+            var(--j-nav-bg-h),
+            var(--j-nav-bg-s),
+            calc(var(--j-nav-base-l) - (var(--distance, 1) * 5%))
+        );
+
+        transition: background-color 0.3s, color 0.3s;
+
+        padding: 10px 0;
+        font-size: 1.25rem;
+        font-size: min(4.5cqw, 1.25rem);
+        font-weight: bold;
+
+        text-decoration: none;
+        color: white;
+    }
+    > a:not(.active):hover {
+        background-color: var(--c-light-green);
+        color: var(--c-green);
+    }
+    > a.active {
+        background-color: var(--c-lgreen);
+        color: var(--c-green);
+    }
 }
-nav > a {
-    flex: 1;
-
-    display: block;
-    text-align: center;
-
-    /* Эти переменные управляются JavaScript */
-    background-color: hsl(
-        var(--j-nav-bg-h),
-        var(--j-nav-bg-s),
-        calc(var(--j-nav-base-l) - (var(--distance, 1) * 5%))
-    );
-
-    transition: background-color 0.3s, color 0.3s;
-
-    padding: 10px 0;
-    font-size: 1.25rem;
-    font-size: min(4.5cqw, 1.25rem);
-    font-weight: bold;
-
-    text-decoration: none;
-    color: white;
-}
-nav > a:not(.active):hover {
-    background-color: var(--c-light-green);
-    color: var(--c-green);
-}
-nav > a.active {
-    background-color: var(--c-lgreen);
-    color: var(--c-green);
-}
-
-
-/*#endregion*/
 
 
 /* ГЛАВНАЯ */
-/*#region*/
 main {
     flex-grow: 1;
     position: relative;
 
     width: 100%;
-}
-main::before {
+
     /* Фон для всей страницы */
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: calc(100lvh); /* чтобы не было оставшейся части фона в мобильном браузере */
-    z-index: -1;
+    &::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100lvh); /* чтобы не было оставшейся части фона в мобильном браузере */
+        z-index: -1;
 
-    background-image: url("/assets/site-background.svg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+        background-image: url("/assets/site-background.svg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 
-.main-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-    margin: 5px 0;
-}
-main > .main-content > * {
-    padding-left: 30px;
-    padding-right: 30px;
+        margin: 5px 0;
+    }
+    .main-content > * {
+        padding-left: 30px;
+        padding-right: 30px;
 
-    max-width: 1280px;
+        max-width: 1280px;
+    }
 }
 .expand {
     width: 100%;
@@ -263,6 +262,7 @@ main > .main-content > * {
 
 
 /* ГЛАВНАЯ: Контент */
+/*#region*/
 .main-heading {
     text-align: center;
     margin-bottom: 1.5rem;
@@ -301,13 +301,10 @@ summary:hover {
 .cover.shadow {
     box-shadow: 5px 5px 15px black;
 }
-
-
 /*#endregion*/
 
 
 /* НИЖНИЙ КОЛОНТИТУЛ */
-/*#region*/
 footer {
     background-color: var(--c-gray);
     color: white;
@@ -316,26 +313,25 @@ footer {
 
     text-align: center;
     font-size: small;
-}
 
-footer a{
-    color: #ccccff;
-}
+    a{
+        color: #ccccff;
+    }
 
-.links {
-    margin-bottom: 0.25rem;
+    .links {
+        margin-bottom: 0.25rem;
+    }
+    .links > a{
+        text-decoration: none;
+    }
+    .links > a span {
+        text-decoration: underline;
+    }
+    .links img {
+        display: inline;
+        height: 1em;
+    }
 }
-.links > a{
-    text-decoration: none;
-}
-.links > a span {
-    text-decoration: underline;
-}
-.links img {
-    display: inline;
-    height: 1em;
-}
-/*#endregion*/
 
 
 
