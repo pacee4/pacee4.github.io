@@ -3,7 +3,7 @@
 :root {
     --g-columns: 5;
 }
-@media (max-width: 1000px) {
+@media screen and (max-width: 1000px) {
     :root {
         --g-columns: 3;
     }
@@ -238,6 +238,10 @@ body.js-modalShow #modalWindow {
             height: 18px;
         }
     }
+
+    :root {
+        --g-columns: 5;
+    }
 }
 
 @media screen and (max-width: 599px) {
@@ -247,5 +251,9 @@ body.js-modalShow #modalWindow {
     }
     #visible-page .grid {
         gap: 5px;
+    }
+
+    :root {
+        --g-columns: 3;
     }
 }
