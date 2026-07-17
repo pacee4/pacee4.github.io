@@ -3,15 +3,18 @@
         "name": "Игровая модель наставничества",
         "src": "/tutorship_quiz",
         "thumb_src": "thumbnails/tutorship_quiz.webp",
+        "date_published": "21.06.2026",
+        "date_updated": "12.02.2026",
         
         "details": {
-            
+            "description": ""
         }
     },
     {
         "name": "Подсчёт очков в Эрудите",
         "src": "/scrabble_counter",
         "thumb_src": "thumbnails/scrabble_counter.webp",
+        "date_published": "",
         
         "details": {
             "description": "Это приложение берёт от «лучшего» счетовода ответственность за подсчёт, запись очков и написание слов и заменяет блокнот, калькулятор и орфографический словарь."

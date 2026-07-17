@@ -95,9 +95,9 @@ class ModalS extends B.AModal {
             if (poweredBy!=="none") {
                 B.showEl(this.mw.poweredBy)
                 this.mw.poweredBy.textContent = (
-                    (poweredBy==="turbowarp")
-                    ? "Создано на Scratch с использованием сторонних утилит TurboWarp и TurboWarp Packager."
-                    : "Работает на браузерном игровом движке PixiJS."
+                    (poweredBy==="turbowarp") ? "Создано на Scratch с использованием сторонних утилит TurboWarp и TurboWarp Packager."
+                    : (poweredBy==="pixijs") ? "Работает на браузерном игровом движке PixiJS."
+                    : poweredBy
                 )
             }
             else {
@@ -202,7 +202,7 @@ interface GameDirectoryEntry {
             length?: "minigame"|"plot",
             other?: string[]
         },
-        powered_by?: "pixijs"|"turbowarp"|"none"
+        powered_by?: string,
         description?: string,
         how_to_play?: string,
         credits?: string
