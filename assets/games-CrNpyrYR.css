@@ -1,0 +1,1 @@
+#modalWindow ul>li[data-support=mobile]:after{content:" 📱"}#modalWindow ul>li[data-support=pc]:after{content:" 🖥️"}

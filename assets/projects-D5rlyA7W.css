@@ -1,0 +1,1 @@
+:root{--p-lpurple-t:#d0c4f8;--p-lpurple:#e6e2f7}#projectCatalogP .cover{background-color:var(--p-lpurple-t)}#modal #modalWindow{background-color:var(--p-lpurple)}@media (prefers-color-scheme:dark){:root{--p-lpurple-t:#524164cc;--p-lpurple:#524164}}
