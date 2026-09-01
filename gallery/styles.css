@@ -18,7 +18,7 @@
     width: 100%;
 }
 
-/* Форма */
+/* Search form */
 #formSearch {
     height: 2rem;
     max-width: 100%;
@@ -65,7 +65,7 @@
 
 
 
-/* Сетка */
+/* Grid */
 /*#region*/
 .content > .group-by-year-instance:not(:last-child) {
     padding-bottom: 15px;
@@ -90,7 +90,7 @@
 /*#endregion*/
 
 
-/* Картинки в сетке */
+/* Pictures on a grid */
 /*#region*/
 
 .card-image .image {
@@ -111,7 +111,7 @@
     padding: 3px;
     padding-bottom: 0;
 
-    /* зажим строки */
+    /* line clamp */
     display: -webkit-box;
     display: box;
     -webkit-box-orient: vertical;
@@ -127,7 +127,7 @@
 }
 
 
-/* Кнопка "Все картинки" */
+/* Button "All pictures" */
 @keyframes anim-flowAlongAngle {
     0% {
         transform: translate(0, 0);
@@ -162,7 +162,7 @@
 .all-pictures > .gradient::before {
     content: "";
     position: absolute;
-    /* Делаем область рендеринга чуть больше, чтобы скрыть края при сдвиге */
+    /* Make the rendering area a little larger to hide the edges when shifting */
     top: 0; left: 0;
     width: 300%; height: 300%;
     
@@ -196,7 +196,7 @@
 /*#endregion*/
 
 
-/* Список папок */
+/* Folder list */
 .folder {
     background-color: var(--p-folder-bg-color);
     border: var(--border-size) solid var(--p-folder-b-color);
@@ -224,7 +224,7 @@
 }
 
 
-/* Теги */
+/* Tags */
 /*#region*/
 
 .tags > * {
@@ -263,7 +263,7 @@ button.no-frame {
 }
 
 
-/* Модальное окно: Слайд-шоу */
+/* Modal window: Slide show */
 
 #modalContent {
     touch-action: none;
@@ -272,11 +272,11 @@ button.no-frame {
         position: absolute;
     }
 
-    /* Надпись над изображением */
+    /* Caption */
     #mwCaption {
         bottom: 0;
         width: 100%;
-        max-height: 100%; /* включение прокрутки при переполнении контента */
+        max-height: 100%; /* enable scrolling when content overflows */
 
         background-color: #404040c0;
         color: white;
@@ -286,7 +286,7 @@ button.no-frame {
         background-color: #404040f0;
     }
 
-    /* Кнопки */
+    /* Buttons */
     > button {
         padding: 0;
         border: none;
@@ -350,7 +350,7 @@ button.no-frame {
         touch-action: none;
         user-select: none;
         -webkit-user-select: none;
-        /* user-drag: none; */
+        user-drag: none;
         -webkit-user-drag: none;
     }
 
@@ -369,9 +369,9 @@ button.no-frame {
     display: none;
 }
 
-/* Управление переходом */
+/* Transition control */
 /*#region*/
-/* Начальное состояние */
+/* Initial state */
 #modalBackground {
     transition: opacity 0.3s;
     opacity: 0;
@@ -380,14 +380,14 @@ button.no-frame {
     transition: opacity 0.3s;
     opacity: 0;
 }
-/* Открыть */
+/* Open */
 body.js-modalShow #modalBackground {
     opacity: 1;
 }
 body.js-modalShow #modalContent {
     opacity: 1;
 }
-/* Закрыть */
+/* Close */
 #modal.js-closing #modalBackground {
     opacity: 0;
 }

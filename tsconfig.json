@@ -12,8 +12,8 @@
         "moduleDetection": "force",
         "noEmit": true,
 
-        "noUnusedLocals": false, // изменить на 'false' при сборке
-        "noUnusedParameters": false, // изменить на 'false' при сборке
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
         "erasableSyntaxOnly": false,
         "noFallthroughCasesInSwitch": true,
 
@@ -21,5 +21,5 @@
             "@/*": ["./src/*"]
         }
     },
-    // "include": ["src"] // Я думаю, это не нужно
+    // "include": ["src"] // MAY NOT BE NEEDED
 }

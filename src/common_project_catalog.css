@@ -1,4 +1,4 @@
-/* ГЛАВНОЕ: Каталог игр */
+/* MAIN: Game catalog */
 
 :root {
     --g-columns: 5;
@@ -40,7 +40,7 @@
     .image > .image-fill {
         background-size: cover;
         filter: blur(20px);
-        transform: scale(1.1); /* Чтобы не было видно белой границы */
+        transform: scale(1.1); /* so that the white frame won't be visible */
     }
     .image > .image-contain {
         background-repeat: no-repeat;
@@ -58,7 +58,7 @@
     h2 {
         font-size: 1.25rem;
 
-        /* зажим строки */
+        /* line clamp */
         display: -webkit-box;
         display: box;
         -webkit-box-orient: vertical;
@@ -105,7 +105,7 @@
 }
 
 
-/* МОДАЛЬНОЕ ОКНО */
+/* MODAL WINDOW */
 #modal {
     display: block;
     position: fixed;
@@ -146,7 +146,7 @@ body.js-modalShow #modalWindow {
     pointer-events: none;
 }
 
-/* МОДАЛЬНОЕ ОКНО: контент */
+/* MODAL WINDOW: Content */
 #modalInnerContent {
     padding-top: 5px;
     padding-left: 5px;
@@ -186,9 +186,9 @@ body.js-modalShow #modalWindow {
 } 
 
 
-/* Управление переходом */
+/* Transition control */
 /*#region*/
-/* Открыть */
+/* Open */
 #modalBackground {
     opacity: 0;
 }
@@ -204,7 +204,7 @@ body.js-modalShow #modalWindow {
     transform: scale(1);
 }
 
-/* Закрыть */
+/* Close */
 #modal.js-closing #modalBackground {
     transition: opacity 0.3s;
     opacity: 0;

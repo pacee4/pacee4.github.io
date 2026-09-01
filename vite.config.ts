@@ -10,7 +10,7 @@ export default defineConfig({
     build: {
         emptyOutDir: true,
         rolldownOptions: {
-            // Точки входа
+            // Entry points
             input: {
                 main: resolve(__dirname, 'index.html'),
                 games: resolve(__dirname, 'games/index.html'),
@@ -21,7 +21,7 @@ export default defineConfig({
     },
     resolve: {
         alias: {
-            // Настраиваем символ @ как ссылку на папку /src
+            // Symbol '@' as a link to the "/src" folder
             '@': resolve(__dirname, './src'),
         },
     }

@@ -1,5 +1,5 @@
 :root {
-    /* Определение цветов в переменные */
+    /* Record colors to variables */
     
     --c-gray: #606060;
     --c-lgreen: #f2f8f0;
@@ -54,10 +54,10 @@ body.js-preload * {
     display: flex;
     flex-direction: column;
     justify-content: stretch;
-    min-height: 100dvh; /* растягивает страницу на всю высоту окна браузера */
+    min-height: 100dvh; /* stretch the page to the full height of the browser window */
 }
 
-/* Модальное окно */
+/* Modal window */
 /*#region*/
 #modal {
     display: block;
@@ -83,7 +83,7 @@ body.js-preload * {
     background-color: var(--p-lgreen);
 }
 
-/* Контролируется JavaScript */
+/* Controlled by JavaScript */
 body.js-modalShow {
     overflow: hidden;
     padding-right: var(--scrollbar-width, 0px);
@@ -98,10 +98,10 @@ body.js-modalShow > #visible-page {
 
 
 
-/* ВЕРХНИЙ КОЛОНТИТУЛ */
+/* HEADER */
 /*#region*/
 #headerWrapper {
-    position: sticky; /* Для моб.устройств - relative/fixed */
+    position: sticky; /* For mobile devices, relative/fixed */
     top: 0;
     max-width: 100%;
     z-index: 1;
@@ -172,7 +172,7 @@ body.js-modalShow > #visible-page {
 /*#endregion*/
 
 
-/* НАВИГАЦИЯ */
+/* NAVIGATION BAR */
 nav {
     flex-shrink: 1;
     width: 32rem;
@@ -188,7 +188,7 @@ nav {
         display: block;
         text-align: center;
 
-        /* Эти переменные управляются JavaScript */
+        /* These variables are controlled by JavaScript */
         background-color: hsl(
             var(--j-nav-bg-h),
             var(--j-nav-bg-s),
@@ -216,21 +216,21 @@ nav {
 }
 
 
-/* ГЛАВНАЯ */
+/* MAIN */
 main {
     flex-grow: 1;
     position: relative;
 
     width: 100%;
 
-    /* Фон для всей страницы */
+    /* Background for the entire page */
     &::before {
         content: "";
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: calc(100lvh); /* чтобы не было оставшейся части фона в мобильном браузере */
+        height: calc(100lvh); /* so that there is no remaining background in the mobile browser */
         z-index: -1;
 
         background-image: url("/assets/site-background.svg");
@@ -261,7 +261,7 @@ main {
 }
 
 
-/* ГЛАВНАЯ: Контент */
+/* MAIN: Content */
 /*#region*/
 .main-heading {
     text-align: center;
@@ -304,7 +304,7 @@ summary:hover {
 /*#endregion*/
 
 
-/* НИЖНИЙ КОЛОНТИТУЛ */
+/* FOOTER */
 footer {
     background-color: var(--c-gray);
     color: white;
@@ -337,7 +337,7 @@ footer {
 
 
 
-/* ТЁМНАЯ ТЕМА */
+/* DARK THEME */
 @media (prefers-color-scheme: dark) {
     :root {
         --p-black: white;
@@ -357,20 +357,20 @@ footer {
     }
 }
 
-/* АДАПТАЦИЯ ПОД МОБИЛЬНОЕ УСТРОЙСТВО */
+/* ADAPTATION TO MOBILE DEVICES */
 /*#region*/
 
 @media screen and ((max-width: 480px) or ((max-height: 480px) and (orientation: landscape))) {
-    /* Размеры шрифтов */
+    /* Font sizes */
     h1 {
         font-size: 2rem;
     }
 
     #puller {
-        display: flex; /* включить видимость */
+        display: flex; /* show the puller */
     }
 
-    /* Управление видимостью и переходом */
+    /* Visibility and transition control */
     #headerWrapper.js-transition #headerPullContainer {
         transition: transform 0.5s ease;
     }
@@ -378,7 +378,7 @@ footer {
         pointer-events: none;
     }
 
-    /* Когда страница прокручена вниз */
+    /* When the page is scrolled to the bottom */
     #headerWrapper.js-pullerShow #headerPullContainer {
         position: fixed;
     }
@@ -394,7 +394,7 @@ footer {
         transform: translateY(calc(-1 * var(--space-height, 43px)));
     }
 }
-/* Вертикальная ориентация */
+/* Portrait orientation */
 @media screen and (max-width: 480px) {
     #headerWrapper {
         position: relative;
@@ -425,25 +425,25 @@ footer {
         padding-right: 5px;
     }
 }
-/* Горизонтальная ориентация */
+/* Landscape orientation */
 @media screen and ((max-height: 480px) and (orientation: landscape)) {
 
 }
 /*#endregion*/
 
 
-/* ШРИФТЫ */
+/* FONTS */
 /*#region*/
 
-/* Заголовки и подзаголовки */
+/* Headings and subheadings */
 h1, h2, h3, h4, .h, nav a {
     font-family: var(--f-heading);
 }
-/* Параграфы */
+/* Paragraphs */
 p, .p, details, summary {
     font-family: var(--f-paragraph);
 }
-/* Информация */
+/* Information */
 .info, button {
     font-family: var(--f-info);
 }
@@ -453,9 +453,9 @@ p, .p, details, summary {
     font-style: italic;
     color: var(--p-green);
 }
-/* Форма */
+/* Form */
 form input, form button {
-    /* Системный шрифт */
+    /* System font */
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -463,7 +463,7 @@ form input, form button {
 /*#endregion*/
 
 
-/* ОБЩЕЕ */
+/* COMMON */
 /*#region*/
 .hide {
     display: none !important;
@@ -609,7 +609,7 @@ img.icon.inv {
 
 /*#endregion*/
 
-/* ЛИЧНОЕ ПРОСТРАНСТВО */
+/* PERSONAL SPACE */
 /*#region*/
 .PIB1 {
     margin-top: 2rem;

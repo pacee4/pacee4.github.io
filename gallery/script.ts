@@ -18,7 +18,7 @@ var c: CatalogS|null = null;
 
 
 function stringToHash(string: string) {
-    // Сгенерировано ИИ //
+    // AI GENERATED
     let hash = 0;
     for (let i = 0; i < string.length; i++) {
         hash = string.charCodeAt(i) + ((hash << 5) - hash);
@@ -45,7 +45,7 @@ function snap(value: number, threshold: number, snapValue: number = 0): number {
 }
 
 function easeQuadOut(start: number, end: number, t: number): number {
-    // Ограничиваем прогресс t в диапазоне от 0 до 1
+    // limit the progress t in the range 0 to 1
     const change = end - start;
     return -change * t * (t - 2) + start;
 }
@@ -69,7 +69,7 @@ function getUrlQuery(name: string) {
 }
 
 
-// КЛАССЫ
+// CLASSES
 class SearchBar {
     static currentQuery = "";
     static waitingForSearch = false;
@@ -113,7 +113,7 @@ class SearchBar {
         this.updateButton((this.currentQuery!=="") ? 1 : 0);
 
         if (!noDelay) {
-            // Ставим задержку
+            // Set delay
             this.canSubmit = false;
             setTimeout(()=>{
                 this.canSubmit = true;
@@ -145,7 +145,7 @@ class SearchBar {
                 (el.inpSearch.value==="") ? 1 : 0
             );
         });
-        // Изменение плейсхолдера
+        // Change the placeholder
         el.inpSearch.addEventListener("focus", ()=>{
             el.inpSearch.placeholder = "Введите запрос или год...";
         });
@@ -191,15 +191,15 @@ class CatalogS {
         
         el.galleryCatalog.replaceChildren();
         this.currentTabState = state;
-        // прокручиваем страницу наверх
+        // scroll the page to the top
         window.scrollTo({top: 0, behavior: "smooth"});
     }
     foundPictures: PictureEntryWithID[] = [];
 
 
     private obtainTags(galleryDirectory: FlatGalleryDirectory) {
-        // СГЕНЕРИРОВАНО ИИ //
-        // Подсчёт количества тегов
+        // AI GENERATED
+        // Count the tags
         const tagCounts: Record<string, number> = galleryDirectory.content
             .flatMap(contentItem => contentItem.tags ?? [])
             .reduce((acc: Record<string, number>, tag: string) => {
@@ -207,14 +207,14 @@ class CatalogS {
                 return acc;
             }, {});
         
-        // Запись тегов в массив и сортировка по количеству
+        // Record the tags to the array and sort by amount
         const tagProperties = Object.entries(tagCounts)
             .sort(([tagA, countA], [tagB, countB]) => {
-                // Сначала сортируем по количеству (от большего к меньшему)
+                // First sort by amount (descending)
                 if (countB !== countA) {
                     return countB - countA;
                 }
-                // Если количество одинаковое, сортируем по алфавиту (localeCompare учитывает кириллицу)
+                // If amount is equal, sort alphabetically (`localeCompare` includes cyrillic)
                 return tagA.localeCompare(tagB);
             })
             .map(([tag]) => (tag))
@@ -226,12 +226,11 @@ class CatalogS {
 
 
     constructor(directory: GalleryDirectory) {
-        // Переструктурирование данных
+        // Restructure data
         const tempContentList: (PictureEntry & {folder_index: number})[] = [];
         const foldersList: FolderEntry[] = [];
 
-        // Присваиваем каждому вложению свой ID
-
+        // Assign ID to each entry
         directory.forEach((folderItem, folderIndex) => {
 
             foldersList.push({
@@ -252,7 +251,7 @@ class CatalogS {
             });
         });
 
-        // Сортируем по дате
+        // Sort by date
         tempContentList.sort((a, b)=>(
             B.getIntegerTime(b.date_end) - B.getIntegerTime(a.date_end)
         ));
@@ -306,13 +305,13 @@ class CatalogS {
     }
 
     private showCatalogP() {
-        // меняем заголовок на вкладке
+        // change the document title
         document.title = `Галерея - Сайт pacee4`;
 
         const f = document.createDocumentFragment();
 
         f.append(
-            // Недавние
+            // Recent
             CatalogBuilder.buildSection(({heading, content})=>{
                 heading.textContent = "Недавние";
 
@@ -327,19 +326,19 @@ class CatalogS {
                 content.addEventListener("click", CatalogBuilder.imageCardClickEvent);
             }),
 
-            // Папки
+            // Folders
             CatalogBuilder.buildSection(({heading, content})=>{
                 heading.textContent = "Папки";
 
                 content.appendChild( CatalogBuilder.buildFolderList(this.galleryDirectory.folders, this) );
             }),
 
-            // Теги
+            // Tags
             CatalogBuilder.buildSection(({heading, content})=>{
                 heading.textContent = "Теги";
 
                 const elTags = CatalogBuilder.buildTagList(this.tags, "t-center", true);
-                // Делегирование события нажатия
+                // Click event delegation
                 elTags.addEventListener("click", (event)=>{
                     const elTag = (event.target as HTMLElement).closest(".tag.clickable") as HTMLElement;
                     if (!elTag) return;
@@ -363,22 +362,22 @@ class CatalogS {
             .filter((item)=>(item.folder_index === folderIndex));
         const length = pictures.length;
 
-        // Меняем заголовок на вкладке
+        // Change the document title
         document.title = `${folder.name} - Галерея - Сайт pacee4`;
 
 
         el.galleryCatalog.append(
             CatalogBuilder.buildSection(({heading, content})=>{
-                // Заголовок
+                // Heading (folder name)
                 heading.textContent = folder.name;
 
-                // период
+                // Period
                 heading.appendChild(CatalogBuilder.writePeriod(folder));
                 
-                // Количество картинок
+                // Amount of pictures
                 heading.after( CatalogBuilder.createPicturesLengthInfo(length) );
 
-                // Описание
+                // Description
                 const description = folder.description;
                 if (description) {
                     const elDescription = document.createElement("p");
@@ -387,7 +386,7 @@ class CatalogS {
                     heading.after(elDescription);
                 }
 
-                // Контент
+                // Content
                 content.appendChild(CatalogBuilder.buildImageSection(pictures));
                 content.addEventListener("click", CatalogBuilder.imageCardClickEvent);
             })
@@ -402,18 +401,18 @@ class CatalogS {
 
         this.recordFoundPictures(pictures);
 
-        // Меняем заголовок на вкладке
+        // Change the document title
         document.title = `Все картинки - Галерея - Сайт pacee4`;
 
         el.galleryCatalog.append(
             CatalogBuilder.buildSection(({heading, content})=>{
-                // Заголовок
+                // Heading
                 heading.textContent = "Все картинки";
                 
-                // Количество картинок
+                // Amount of pictures
                 heading.after( CatalogBuilder.createPicturesLengthInfo(length) );
 
-                // Контент
+                // Content
                 content.appendChild(CatalogBuilder.buildImageSection(pictures));
                 content.addEventListener("click", CatalogBuilder.imageCardClickEvent);
             })
@@ -423,7 +422,7 @@ class CatalogS {
     }
 
     private searchP(query: string) {
-        // поиск
+        // Search
         const results = SearchEngine.search(this.galleryDirectory, this.tags.map(tag => tag.tag), query);
         const pictures = results.content;
         const picturesWithoutTags = pictures.slice(0, results.searchFromPictureId);
@@ -435,23 +434,23 @@ class CatalogS {
         this.recordFoundPictures(pictures);
 
 
-        // меняем заголовок на вкладке
+        // Change the document title
         document.title = `${capitalize(query)} - Галерея - Сайт pacee4`;
 
         const f = document.createDocumentFragment();  
-        // поиск без тегов
+        // Search without tags
         if (picturesWithoutTags.length > 0 || matchedFolders.length > 0) {
             f.appendChild(
-                // Результаты поиска (Образец)
+                // Search results (example)
                 CatalogBuilder.buildSection(({heading, content})=>{
                     heading.classList.add("italic");
                     heading.textContent = `«${query}»`;
 
-                    // Количество картинок
+                    // Amount of pictures
                     if (picturesWithoutTags.length > 0)
                         heading.after( CatalogBuilder.createPicturesLengthInfo(picturesWithoutTags.length) );
 
-                    // Папки
+                    // Folders
                     if (matchedFolders.length>0) {
                         heading.after( CatalogBuilder.buildFolderList(
                             this.galleryDirectory.folders
@@ -460,20 +459,19 @@ class CatalogS {
                         ));
                     }
 
-                    // Контент
+                    // Content
                     content.appendChild(CatalogBuilder.buildImageSection(picturesWithoutTags));
                     content.addEventListener("click", CatalogBuilder.imageCardClickEvent);
                 
                 })
-                // Поиск по тегам (Образец)
             );
         }
 
-        // поиск по тегам
+        // Search by tags
         if (picturesWithTags.length > 0) {
             f.appendChild(
                 CatalogBuilder.buildSection(({heading, content})=>{
-                    // Заголовок
+                    // Heading
                     heading.classList.add("flex", "center");
                     const elTags = CatalogBuilder.buildTagList(this.tags.filter((tag)=> matchedTags.includes(tag.tag)), "t-big-1 regular")
                     heading.append(
@@ -484,17 +482,17 @@ class CatalogS {
                         elTags
                     )
                     
-                    // Количество картинок
+                    // Amount of pictures
                     heading.after( CatalogBuilder.createPicturesLengthInfo(picturesWithTags.length) );
 
-                    // Контент
+                    // Content
                     content.appendChild(CatalogBuilder.buildImageSection(picturesWithTags, false, picturesWithoutTags.length));
                     content.addEventListener("click", CatalogBuilder.imageCardClickEvent);
                 })
             );
         }
 
-        // если ничего не найдено
+        // if none found
         if (!f.firstChild) {
             f.appendChild(B.createEl("p", {text:"Ничего не найдено", class:"t-center"}));
         }
@@ -506,12 +504,12 @@ class CatalogS {
 
 
     recoverState() {
-        // Чтение поисковой строки
+        // Read the search string
         if (SearchBar.currentQuery !== "") {
             this.search(SearchBar.currentQuery);
         }
         else {
-            // Чтение параметров URL: "folder"
+            // Read the URL parameter: "folder"
             const folderIndexStr = getUrlQuery("folder");
             const folderIndex = folderIndexStr ? Number(folderIndexStr) : -1;
 
@@ -526,14 +524,12 @@ class CatalogS {
 }
 
 class CatalogBuilder {
-
-    // ПРИМЕЧАНИЕ: кастомный атрибут id на карточке картинки может не понадобиться
     static imageCardClickEvent = (event: PointerEvent)=>{
         const elTarget = (event.target as HTMLElement).closest(".clickable") as HTMLElement;
         if (!elTarget) return;
 
         if (elTarget.classList.contains("all-pictures")) {
-            // Открываем раздел "все картинки"
+            // Open the section "All pictures"
             pushUrlQuery([
                 {name: "folder", value: "0"},
                 {name: "search", value: ""}
@@ -541,7 +537,7 @@ class CatalogBuilder {
             c!.showFolderContent(0);
         }
         else {
-            // Открываем картинку
+            // Open the picture
             const elCard = elTarget.closest(".card-image") as HTMLElement;
             if (!elCard) return;
             
@@ -566,7 +562,7 @@ class CatalogBuilder {
     static buildFolderList(folders: FolderEntry[], c: CatalogS) {
         const ul = B.createEl("ul", {class:"no-bullets flex column", style:{"text-align": "initial"}}) as HTMLUListElement;
 
-        // Создание папок в фрагменте
+        // Create folders in a document fragment
         folders.forEach((folder)=>{
             const clone = (templates.folder.content.cloneNode(true)) as DocumentFragment;
             
@@ -576,7 +572,7 @@ class CatalogBuilder {
             const elName = clone.querySelector(".name") as HTMLHeadingElement;
             elName.textContent = folder.name;
             
-            // период
+            // period
             elName.appendChild(CatalogBuilder.writePeriod(folder));
             
 
@@ -586,7 +582,7 @@ class CatalogBuilder {
             ul.appendChild(clone);
         });
 
-        // Делегирование события нажатия
+        // Click event delegation
         ul.addEventListener("click", (event)=>{
             const elFolder = (event.target as HTMLElement).closest(".folder") as HTMLElement;
             if (!elFolder) return;
@@ -608,7 +604,7 @@ class CatalogBuilder {
     static buildImageSection(items: PictureEntryWithID[], asSingleGrid=false, startPos=0) {
         const f = document.createDocumentFragment();
         if (!asSingleGrid) {
-            // А также группировка по годам
+            // And also group by year
             let yearH = 0;
             let currentSection: HTMLElement|null = null;
             let currentGridElement: HTMLDivElement|null = null;
@@ -691,9 +687,9 @@ class CatalogBuilder {
         return ul;
     }
 
-    // ПРИМЕЧАНИЕ: может не понадобиться
+    // MAY NOT BE NEEDED
     static groupByYear(items: PictureEntryWithID[]) {
-        // Группировка по годам
+        // Group by year
         const groupedByYear: GroupedByYear[] = [];
 
         let yearHolder = 0;
@@ -713,11 +709,11 @@ class CatalogBuilder {
             .map((contentItem) => contentItem.date_end)
             .filter((dateStr) => dateStr.includes('.'))
             .map((dateStr: string) => {
-                // Разбиваем строку "05.10.2020" по точкам и берем последний элемент (год)
+                // Split the string "DD.MM.YYYY" and take the last element (year)
                 const parts = dateStr.split('.');
                 return parseInt(parts[parts.length - 1], 10);
             })
-            .filter((year: number) => !isNaN(year)); // Убираем некорректно спарсенные числа
+            .filter((year: number) => !isNaN(year)); // Remove incorrectly parsed numbers
 
         return {
             begin: (years.length>0) ? Math.min(...years) : 0,
@@ -732,22 +728,22 @@ class CatalogBuilder {
         const hue = hash % 360;
         const saturation = 70 + (Math.floor(hash/360) % 15);
         
-        // Сгенерировано ИИ //
+        // AI GENERATED
         let lightness: number
         const high = 65;
         const low = 48;
-        // Реализация графика изменения яркости
+        // Brightness curve implementation
         if (hue >= 0 && hue < 60) {
-            // Плавный спад от 65% до 48% в красно-желтой зоне
+            // Smooth drop from 65% to 48% in the red-yellow zone
             lightness = high - (hue / 60) * (high - low);
         } else if (hue >= 60 && hue < 180) {
-            // Стабильное плато 48% в желто-зеленой и бирюзовой зоне
+            // Stable 48% in the yellow-green and turquoise zones
             lightness = low;
         } else if (hue >= 180 && hue < 240) {
-            // Плавный подъем от 48% до 65% в синей зоне
+            // Smooth rise from 48% to 65% in the blue zone
             lightness = low + ((hue - 180) / 60) * (high - low);
         } else {
-            // Стабильные 65% для пурпурного, фиолетового и розового (240° - 360°)
+            // Stable 65% for magenta, violet, and pink (240° - 360°)
             lightness = high;
         }
         
@@ -810,10 +806,10 @@ class SearchEngine {
 
         if (!normQuery) return { content: [], folders: [], matchedTags: [], searchFromPictureId: 0 };
 
-        // Разделяем запрос на отдельные слова
+        // Split the string query by separate words
         const {queryYears, queryWords, queryTags} = this.parseTokens(normQuery.split(' '), tags);
 
-        // Ищем картинки
+        // Search the pictures
         const content: PictureEntryWithID[] = [];
         const contentWithTags: PictureEntryWithID[] = [];
         items.forEach(item => {
@@ -837,7 +833,7 @@ class SearchEngine {
         
         return { 
             content: [...content, ...contentWithTags],
-            // Ищем папки
+            // Search the folders
             folders: folders.filter(folder => {
                 const fullName = this.normalizeText(folder.name);
                 return this.matchesTitleQuery(fullName, [...queryWords, ...queryTags]);
@@ -855,7 +851,7 @@ class SearchEngine {
         const yearRegex = /^\d{4}$/;
 
         tokens.forEach((token)=>{
-            // если это год
+            // if this is a year
             if (yearRegex.test(token)) {
                 queryYears.push(token);
                 return;
@@ -863,11 +859,11 @@ class SearchEngine {
 
             const matchedTag = tags.find(tag => tag === token) || tags.find(tag => this.matchesTypos([tag], token, 3));
 
-            // если это тег
+            // if this is a tag
             if (matchedTag) {
                 queryTags.push(matchedTag);
             }
-            // иначе это год
+            // else this is a picture name
             else {
                 queryWords.push(token);
             }
@@ -889,12 +885,12 @@ class SearchEngine {
         else {
             return queryWords.every(queryWord => {
 
-                // Если слово состоит из 1 буквы — ищем строго по 1-й категории (начало любого слова или строки)
+                // If the words contains 1 letter, then search according to the 1st category (the beginning of any word or line)
                 if (queryWord.length === 1) {
                     return this.matchesFirstLetters(itemWords, queryWord);
                 }
                 else {
-                // Для длинных слов проверяем все 4 категории
+                // For long words check all 4 categories
                     return (
                         this.matchesFirstLetters(itemWords, queryWord) ||
                         this.matchesSubstring(fullName, queryWord) ||
@@ -919,9 +915,9 @@ class SearchEngine {
                     matrix[i][j] = matrix[i - 1][j - 1];
                 } else {
                     matrix[i][j] = Math.min(
-                    matrix[i - 1][j] + 1,    // удаление
-                    matrix[i][j - 1] + 1,    // вставка
-                    matrix[i - 1][j - 1] + 1 // замена
+                    matrix[i - 1][j] + 1,    // delete
+                    matrix[i][j - 1] + 1,    // paste
+                    matrix[i - 1][j - 1] + 1 // replace
                     );
                 }
             }
@@ -938,7 +934,7 @@ class SearchEngine {
     }
 
 
-    // Категории поиска
+    // Search categories
     private static matchesFirstLetters(itemWords: string[], queryWord: string): boolean {
         return itemWords.some(word => word.startsWith(queryWord));
     }
@@ -961,7 +957,7 @@ class SearchEngine {
 
 
 
-/* Слайд-шоу */
+/** Slide show */
 class SliderInSlideshowS {
     readonly elSlider = document.getElementById("mwSlider") as HTMLDivElement;
     private readonly divLeft = this.elSlider.querySelector(".e-left") as HTMLDivElement;
@@ -978,32 +974,32 @@ class SliderInSlideshowS {
     private startSlideTranslateX = 0;
     private slideTranslateX = 0;
 
-    // Управление указателей
+    // Pointer control
     activePointers = new Map<number, PointerEvent>();
 
-    // Состояния взаимодействия
+    // Interaction states
     private isSwiping = false;
     private isDragging = false;
     hasMoved = false;
     
-    // Границы для свайпа
+    // Swipe boundaries
     private isAtLeftBoundary = false;
     private isAtRightBoundary = false;
 
-    // Константы для свайпа
-    private readonly SWIPE_THRESHOLD = 0.3; // 30% ширины экрана
-    private readonly MOVEMENT_THRESHOLD = 5; // пикселей для определения движения
+    // Swipe settings constants
+    private readonly SWIPE_THRESHOLD = 0.3; // 30% of the screen width
+    private readonly MOVEMENT_THRESHOLD = 5; // pixels for detecting movement
 
-    // Начальные координаты
+    // Initial coordinates
     private startX = 0;
     private startY = 0;
     private globalTouchStartX = 0;
     private globalTouchStartY = 0;
     
-    // Для зума двумя пальцами
+    // For pinch zoom
     private distanceH = -1;
     private centerH: {x: number, y: number}|null = null;
-    // Для зума
+    // For zoom
     private zoomLevel = 2;
     private readonly ZOOM_LEVELS = [ 0.5, 0.75, 1, 1.25, 1.5, 2, 2.5, 3 ];
     private readonly ZOOM_COEFFICIENT = 0.005;
@@ -1064,7 +1060,7 @@ class SliderInSlideshowS {
             this.parent.updateContent();
 
             this.transformedAdjacentImg = (byPos === 1) ? this.imgLeft : this.imgRight;
-            // Перенос трансформации на соседнюю картинку
+            // Transfer the transformation to the adjacent picture
             this.transformedAdjacentImg.style.transform = `translate(${this.translateX}px, ${this.translateY}px) scale(${this.scale})`;
             this.resetTransform();
 
@@ -1094,20 +1090,20 @@ class SliderInSlideshowS {
     updateThreeImages() {
         const currentPos = this.parent.currentPos;
 
-        // 1. Обновляем центральное изображение (оно гарантированно есть)
+        // 1. Update the center image (it's guaranteed to be there)
         this.updateImage(this.img, currentPos);
 
-        // 2. Обновляем левое изображение или скрываем его контейнер
+        // 2. Update the left image or hide its container
         this.updateSideZone(this.divLeft, this.imgLeft, currentPos-1);
 
-        // 3. Обновляем правое изображение или скрываем его контейнер
+        // 3. Update the right image or hide its container
         this.updateSideZone(this.divRight, this.imgRight, currentPos+1);
     }
 
 
     private updateImage(img: HTMLImageElement, index: number): void {
         const picture = this.parent.pictures[index];
-        img.src = ""; // Чтобы картинка изначально была пустой
+        img.src = ""; // So that the picture is initially empty
         img.src = picture.src;
         img.alt = picture.name;
     }
@@ -1115,7 +1111,7 @@ class SliderInSlideshowS {
     private updateSideZone(zoneDiv: HTMLElement, img: HTMLImageElement, index: number): void {
         const pictures = this.parent.pictures;
 
-        // Проверяем, входит ли индекс в границы массива
+        // Check whether the index is inside the array
         if (index >= 0 && index < pictures.length) {
             this.updateImage(img, index);
             B.showEl(zoneDiv);
@@ -1126,7 +1122,7 @@ class SliderInSlideshowS {
     
 
     private setEvents() {
-        // Обновление свойства windowWidthH
+        // update the property `windowWidthH`
         window.addEventListener("resize", ()=>{
             if (!this.parent.elModal.classList.contains("hide")) {
                 this.windowWidthH = window.innerWidth;
@@ -1138,11 +1134,11 @@ class SliderInSlideshowS {
         this.elSlider.addEventListener('pointerup', this.handlePointerUp);
         this.elSlider.addEventListener('pointercancel', this.handlePointerCancel);
 
-        // Зум колёсиком мыши
+        // Wheel zoom
         this.img.addEventListener("wheel", (event)=>{
             event.preventDefault();
 
-            // Определение направления зума
+            // Detect zoom direction
             const direction = event.deltaY < 0 ? 1 : -1;
             this.zoomLevel = clamp(this.zoomLevel + direction, 0, this.ZOOM_LEVELS.length - 1);
 
@@ -1150,12 +1146,12 @@ class SliderInSlideshowS {
             const targetScale = this.ZOOM_LEVELS[this.zoomLevel];
             if (targetScale === oldScale) return;
 
-            // Находим координаты курсора мыши относительно самой картинки
+            // Find the coordinates of the mouse cursor relative to the image itself
             const rect = this.img.getBoundingClientRect();
             const mouseXOnImg = (event.clientX - rect.left) - (rect.width/2);
             const mouseYOnImg = (event.clientY - rect.top) - (rect.height/2);
 
-            // Рассчитываем, насколько сдвинется точка под курсором при изменении масштаба
+            // Calculate how much the point under the cursor will move when the zoom level changes
             const scaleRatio = targetScale / oldScale;
             const targetX = this.translateX - (mouseXOnImg * scaleRatio - mouseXOnImg);
             const targetY = this.translateY - (mouseYOnImg * scaleRatio - mouseYOnImg);
@@ -1172,7 +1168,7 @@ class SliderInSlideshowS {
             this.globalTouchStartY = event.clientY;
             this.hasMoved = false;
 
-            // прервать анимацию
+            // stop the animation
             this.endAnimSlide();
             this.startSlideTranslateX = this.slideTranslateX;
         }
@@ -1183,14 +1179,14 @@ class SliderInSlideshowS {
         this.img.setPointerCapture(event.pointerId);
         
         if (this.activePointers.size === 1) {
-            // Один палец: перемещение
+            // One finger down: movement
             this.isDragging = true;
             this.startX = event.clientX - this.translateX;
             this.startY = event.clientY - this.translateY;
         }
         
         else if (this.activePointers.size === 2) {
-            // Два пальца: перемещение и масштабирование
+            // Two fingers down: movement and zoom
             this.isDragging = false;
             const [p1, p2] = Array.from(this.activePointers.values());
             this.distanceH = this.getDistance(p1, p2);
@@ -1218,11 +1214,11 @@ class SliderInSlideshowS {
         
         if (!this.hasMoved) return;
 
-        // Свайп
+        // Swipe
         if (this.isSwiping) {
             this.setSliderTransform(event.clientX-this.globalTouchStartX+this.startSlideTranslateX);
         }
-        // Перетаскивание
+        // Move
         else if ((event.target as HTMLElement) === this.img) {
             if (this.activePointers.size === 1 && this.isDragging) {
                 this.applyBoundedTransform(
@@ -1231,7 +1227,7 @@ class SliderInSlideshowS {
                     this.scale
                 );
             }
-            // Два пальца: перемещение и масштабирование
+            // Two fingers down: movement and zoom
             else if (this.activePointers.size === 2) {
                 this.handleTwoFingerGesture();
             }
@@ -1241,7 +1237,7 @@ class SliderInSlideshowS {
     private handleTwoFingerGesture() {
         const [p1, p2] = Array.from(this.activePointers.values());
 
-        // 1. Потенциальный сдвиг
+        // 1. Potential shift
         let targetX = this.translateX;
         let targetY = this.translateY;
         const center = this.getCenter(p1, p2);
@@ -1252,13 +1248,13 @@ class SliderInSlideshowS {
         }
         this.centerH = center;
 
-        // 2. Потенциальное масштабирование
+        // 2. Potential scale
         let targetScale = this.scale;
         const distance = this.getDistance(p1, p2);
         if (this.distanceH > 0) {
             const delta = distance - this.distanceH;
             targetScale += delta * this.ZOOM_COEFFICIENT;
-            targetScale = clamp(targetScale, 0.5, 3); // Ограничения
+            targetScale = clamp(targetScale, 0.5, 3); // limits
         }
         this.distanceH = distance;
 
@@ -1278,16 +1274,16 @@ class SliderInSlideshowS {
             }
         }
         else {
-            // Завершение свайпа
+            // Finishing the swipe
             const threshold = Math.min(this.windowWidthH * this.SWIPE_THRESHOLD, 150);
             const relX = this.globalTouchStartX - event.clientX;
             
             if (relX < -threshold) {
-                // Налево
+                // left
                 this.slide(-1);
             }
             else if (relX > threshold) {
-                // Направо
+                // right
                 this.slide(1);
             }
         }
@@ -1306,13 +1302,13 @@ class SliderInSlideshowS {
         this.activePointers.delete(event.pointerId);
 
         if (!this.isSwiping) {
-            // Сбрасываем данные жеста двумя пальцами
+            // Reset two-finger gesture data
             if (this.activePointers.size < 2) {
                 this.distanceH = -1;
                 this.centerH = null;
             }
 
-            // Плавный возврат к одиночному перемещению, если остался один палец
+            // Smoothly revert to single-finger gestures when only one finger remains
             if (this.activePointers.size === 1) {
                 const p1 = Array.from(this.activePointers.values())[0];
 
@@ -1328,7 +1324,8 @@ class SliderInSlideshowS {
 
 
     private applyBoundedTransform(targetX: number, targetY: number, targetScale: number) {
-        // Шаг 1: Применяем гипотетические стили для замера реальных границ
+        
+        // 1. Apply hypothetical styles to measure actual boundaries
         
         this.scale = targetScale;
         this.translateX = targetX;
@@ -1336,7 +1333,7 @@ class SliderInSlideshowS {
         this.updateImageTransform();
 
 
-        // Шаг 2: Получаем текущие экранные координаты углов картинки после трансформации
+        // 2. Get the current screen coordinates of the image corners after transformation
         const rect = this.img.getBoundingClientRect();
         const viewW = this.windowWidthH;
         const viewH = window.innerHeight;
@@ -1347,7 +1344,7 @@ class SliderInSlideshowS {
         this.isAtLeftBoundary = false;
         this.isAtRightBoundary = false;
 
-        // --- Ограничения по оси X ---
+        // --- X-axis limits ---
         if (rect.width <= viewW) {
             correctedX = 0;
             this.isAtLeftBoundary = true;
@@ -1364,7 +1361,7 @@ class SliderInSlideshowS {
             }
         }
 
-        // --- Ограничения по оси Y ---
+        // --- Y-axis limits ---
         if (rect.height <= viewH) {
             correctedY = 0;
         } else {
@@ -1373,12 +1370,12 @@ class SliderInSlideshowS {
             if (rect.bottom < viewH) correctedY += (viewH - rect.bottom);
         }
 
-        // Шаг 3: Применяем скорректированные значения
+        // 3. Apply the adjusted values
         this.translateX = correctedX;
         this.translateY = correctedY;
         this.updateImageTransform();
 
-        // Обновляем класс элемента
+        // Update the element class
         this.img.classList.toggle("js-draggable", canBeDraggable);
     }
 
@@ -1398,7 +1395,7 @@ class SliderInSlideshowS {
         this.elSlider.style.transform = `translateX(${x}px)`;
     }
 
-    // Вспомогательные функции
+    // Helper methods
     private getDistance(p1: PointerEvent, p2: PointerEvent) {
         const dx = p1.clientX - p2.clientX;
         const dy = p1.clientY - p2.clientY;
@@ -1447,7 +1444,7 @@ class SlideshowS extends B.AModal {
             }
         });
 
-        // Клик по тегам
+        // Click on tags
         this.mw.divTags.addEventListener("click", async (event)=>{
             const elTag = (event.target as HTMLElement).closest(".tag.clickable") as HTMLElement;
             if (!elTag) return;
@@ -1456,7 +1453,7 @@ class SlideshowS extends B.AModal {
             SearchBar.submitQuery(elTag.textContent);
         });
         
-        // Кнопки
+        // Buttons
         this.mw.bClose.addEventListener("click", ()=>{
             this.close();
         });
@@ -1467,7 +1464,7 @@ class SlideshowS extends B.AModal {
             this.slider.slide(1);
         })
 
-        // Переключение режима слайд-шоу
+        // Switching slideshow mode
         this.elWindow.addEventListener("click", (event)=>{
             const target = event.target as HTMLElement;
 
@@ -1477,15 +1474,15 @@ class SlideshowS extends B.AModal {
         });
     }
 
-    /** Действует с обновлённым свойством `this.currentPos` */
+    /** Operates on the updated `currentPos` property. */
     updateContent() {
         this.slider.updateThreeImages();
 
         const picture = this.pictures[this.currentPos];
 
-        // Название
+        // Name
         this.mw.name.textContent = picture.name;
-        // Период
+        // Period
         {
             const dateBegin = picture.date_begin ? B.formatToRuDate(picture.date_begin) : null;
             const dateEnd = B.formatToRuDate(picture.date_end);
@@ -1515,7 +1512,7 @@ class SlideshowS extends B.AModal {
             );
         }
 
-        // Описание
+        // Description
         if (picture.description) {
             B.showEl(this.mw.descriptionP);
             this.mw.descriptionP.open = false;
@@ -1525,18 +1522,18 @@ class SlideshowS extends B.AModal {
             B.hideEl(this.mw.descriptionP);
         }
 
-        // Теги
+        // Tags
         this.mw.divTags.replaceChildren();
         this.mw.divTags.appendChild( CatalogBuilder.buildTagList(
             c!.tags
                 .filter((tag)=>picture.tags?.includes(tag.tag))
-                // сортировка по алфавиту в новом массиве
+                // sort alphabetically in a newly created array
                 .sort((a, b)=>(a.tag.localeCompare(b.tag))),
             "",
             true
         ) );
 
-        // Видимость кнопок
+        // Button visibility
         if (this.currentPos > 0) { B.showEl(this.mw.bLeft); } else { B.hideEl(this.mw.bLeft); }
         if (this.currentPos < this.pictures.length-1) { B.showEl(this.mw.bRight); } else { B.hideEl(this.mw.bRight); }
     }
@@ -1548,7 +1545,7 @@ class SlideshowS extends B.AModal {
         this.slider.resetState();
         this.updateContent();
 
-        // Показать модальное окно
+        // Show modal window
         B.showEl(this.elModal); 
     }
 }
@@ -1559,7 +1556,7 @@ const slideshow = new SlideshowS();
 
 
 
-// ЗАГРУЗИТЬ gallery_directory.json
+// LOAD gallery_directory.json
 
 type GalleryDirectory = PictureFolderEntry[];
 interface PictureFolderEntry {
@@ -1581,7 +1578,7 @@ interface PictureEntry {
 interface FolderEntry {
     name: string,
     description?: string,
-    // вычисляются автоматически
+    // is calculated automatically
     readonly id: number,
     yearRange?: {  
         begin: number,
@@ -1605,7 +1602,7 @@ B.loadJSON("gallery_directory.json")
 
     c = new CatalogS(galleryDirectory);
 
-    // Инициализация поисковой строки
+    // Initialization of the search bar
     el.formSearch.addEventListener("submit", (event)=>{
         event.preventDefault();
         SearchBar.submitQuery();
@@ -1615,18 +1612,18 @@ B.loadJSON("gallery_directory.json")
     c.recoverState();
 })
 .catch((e)=>{
-    // не удалось загрузить файл
+    // couldn't load the file
     console.error(e);
     el.galleryCatalog.appendChild(B.createEl("p", {class:"t-center", text: "Не удалось загрузить каталог"}));
 });
 
 
-// ЗАГРУЗИТЬ
+// LOAD
 {
-    // когда страница открыта или перезагружена
+    // when the doucment is opened or reloaded
     SearchBar.recoverSearchBar();
 
-    // когда пользователь нажал «Назад»/«Вперёд» во вкладке
+    // when the user taps on Back/Forward
     window.addEventListener("popstate", (event)=>{
         SearchBar.recoverSearchBar();
         if (c) {
@@ -1634,7 +1631,7 @@ B.loadJSON("gallery_directory.json")
         }
     });
 
-    // когда нажата вкладка «Галерея», перейти в главную страницу
+    // when the Gallery tab is clicked, go to the main section
     (document.querySelector("nav > a.active") as HTMLAnchorElement)
         .addEventListener("click", (event)=>{
             event.preventDefault();

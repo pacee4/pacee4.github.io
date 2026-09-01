@@ -152,7 +152,7 @@ class ModalS extends B.AModal {
         }
     }
     private resetScrolling() {
-        // обнулить позицию прокрутки в содержимом модального окна
+        // Reset the scroll position of the modal window content
         this.elInnerContent.scrollTop = 0;
         this.elInnerContent.classList.add("js-atTop");
 
@@ -174,20 +174,20 @@ class ModalS extends B.AModal {
 
     constructor() {
         super({modal: "modal", window: "modalWindow"});
-        // Добавить обработчики событий
+        // Add event listeners
 
-        // кнопка "Закрыть"
+        // the Close button
         document.getElementById("mwAClose")!.addEventListener("click", ()=>{
             this.close();
         });
 
-        // обновление прокрутки
+        // update scroll gradients
         this.elInnerContent.addEventListener("scroll", this.updateScrollGradients);
     }
 }
 const modal = new ModalS();
 
-// ЗАГРУЗИТЬ game_directory.json
+// LOAD game_directory.json
 
 interface GameDirectoryEntry {
     name: string,
@@ -214,17 +214,17 @@ B.loadJSON("game_directory.json")
     const gameDirectory = directory as Array<GameDirectoryEntry>;
     const templateCard = document.getElementById("templateCard") as HTMLTemplateElement;
     const gameCatalog = document.getElementById("gameCatalog") as HTMLDivElement;
-    // Динамически добавить элементы из переменной "gameDirectory"
+    // Load the elements dynamically from the variable `gameDirectory`
     
     gameDirectory.forEach((entry, index)=>{
         const clone = (templateCard.content.cloneNode(true)) as DocumentFragment;
 
-        // Картинка
+        // Picture
         for (const el of [(clone.querySelector(".image-fill") as HTMLDivElement), (clone.querySelector(".image-contain") as HTMLDivElement)]) {
             el.style.backgroundImage = `url(${entry.thumb_src ?? "/assets/photo_placeholder.svg"})`;
         }
 
-        // Содержимое
+        // Content
         clone.querySelector(".header")!.textContent = entry.name;
         {
             const elDatePublished = clone.querySelector(".datePublished") as HTMLTimeElement;
@@ -240,7 +240,7 @@ B.loadJSON("game_directory.json")
                 modal.open(directory[index]);
             });
 
-        // Иконки
+        // Icons
         {
             const support = entry.details?.categories?.support ?? "all";
             if (support==="mobile"||support==="pc") {
@@ -260,7 +260,7 @@ B.loadJSON("game_directory.json")
     });
 })
 .catch((e)=>{
-    // не удалось загрузить файл
+    // couldn't load the file
     console.error(e);
     const elGameCatalogP = document.getElementById("gameCatalogP")!;
     elGameCatalogP.textContent = "";

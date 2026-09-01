@@ -1,6 +1,6 @@
 import * as B from "@/base_script.js";
 
-// ЗАГРУЗИТЬ
+// LOAD
 
 {
     const vcDatePeriod = document.getElementById("vcDatePeriod") as HTMLSpanElement;
@@ -9,13 +9,13 @@ import * as B from "@/base_script.js";
     const years = birthDate.years;
     const periodText = `${years} ${B.sklonenieNoun(years, "год", "года", "лет")}`;
     if (birthDate.days === 0 && birthDate.months === 0) {
-        // День рождения
+        // Birthday
         vcDatePeriod.textContent = `(${periodText}!)`;
         vcDatePeriod.classList.add("js-animatedDatePeriod");
     }
     else {
 
-        // Обычный день
+        // Ordinary day
         vcDatePeriod.textContent = `(${periodText})`;
     }
     

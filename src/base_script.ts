@@ -19,7 +19,7 @@ export function sklonenieNoun(number: number, singular: string, dual: string, pl
     );
 }
 
-// ДАТЫ
+// DATES
 
 export function formatToRuDate(date: string) {
     const parts = date.split('-');
@@ -69,7 +69,7 @@ export function getDaysFromDate(date: string) {
 
     return {
         year: year,
-        /** Здесь январь - это нулевой месяц, как допустимо в синтаксисе класса Date */
+        /** Here January is denoted as 0 */
         month: month-1,
         day: day,
         priority: parts.length-1
@@ -84,7 +84,7 @@ export function getIntegerTime(date: string) {
 export function getPeriodUntilToday(dateString: string) {
     const pastDateN = getDaysFromDate(dateString);
     
-    // Получение сегодняшней даты
+    // Get today's date
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     
@@ -92,7 +92,7 @@ export function getPeriodUntilToday(dateString: string) {
     let months = (today.getMonth() - pastDateN.month);
     let days = (today.getDate() - pastDateN.day);
 
-    // Коррекция периода
+    // Period correction
     if (days < 0) {
         months--;
         const previousMonth = new Date(today.getFullYear(), today.getMonth(), 0);
@@ -132,7 +132,7 @@ export function getApproximatePeriodUntilToday(dateString: string): string {
     }
 }
 
-// HTML-ЭЛЕМЕНТЫ
+// HTML ELEMENTS
 
 export function showEl(el: HTMLElement) {
     el.classList.remove("hide");
@@ -187,20 +187,18 @@ export function createTimeEl(text: string, dateTime: string): HTMLTimeElement {
 }
 
 /**
- * Обозначения:
+ * Designations:
  * 
- * **жирный**: `**жирный**`
+ * **bold**: `**bold**`
  * 
- * *курсив*: `*курсив*`
+ * *italic*: `*italic*`
  * 
- * гиперссылка: `[имя](URL-ссылка)`
+ * hyperlink: `[name](URL link)`
  */
 export function formatText(text: string, targetElement: HTMLElement) {
-    // Сгенерировано ИИ //
-    // 1. Очистить целевой элемент
+    // AI-GENERATED
     targetElement.textContent = ''; 
 
-    // 2. Регулярное выражение ищет жирный текст, курсив и ссылки [текст](ссылка), игнорируя экранированные символы
     const regex = /(?<!\\)(\*\*.*?(?<!\\)\*\*|(?<!\\)\*.*?(?<!\\)\*|(?<!\\)\[.*?(?<!\\)\]\((?<!\\).*?(?<!\\)\))/g;
     const tokens = text.split(regex);
 
@@ -215,11 +213,9 @@ export function formatText(text: string, targetElement: HTMLElement) {
             italicElement.textContent = token.slice(1, -1).replace(/\\([\*\*\[\]\(\)])/g, '$1');
             targetElement.appendChild(italicElement);
         } 
-        // 3. Обработка ссылок [текст](ссылка)
         else if (token.startsWith('[') && token.endsWith(')')) {
             const linkElement = document.createElement('a');
-            
-            // Разделяем текст ссылки и URL по последней закрывающей квадратной скобке и открывающей круглой
+
             const match = token.match(/^\[(.*?(?<!\\))\]\((.*?(?<!\\))\)$/);
             
             if (match) {
@@ -229,19 +225,16 @@ export function formatText(text: string, targetElement: HTMLElement) {
                 linkElement.textContent = linkText.replace(/\\([\*\*\[\]\(\)])/g, '$1');
                 linkElement.href = linkUrl.replace(/\\([\*\*\[\]\(\)])/g, '$1');
                 
-                // Опционально: открывать в новой вкладке внешние ссылки
                 linkElement.target = '_blank';
                 linkElement.rel = 'noopener noreferrer';
                 
                 targetElement.appendChild(linkElement);
             } else {
-                // Если структура нарушена, выводим как обычный текст
                 const cleanText = token.replace(/\\([\*\*\[\]\(\)])/g, '$1');
                 targetElement.appendChild(document.createTextNode(cleanText));
             }
         }
         else if (token) {
-            // Очищаем обычный текст от любых экранирующих слэшей для спецсимволов
             const cleanText = token.replace(/\\([\*\*\[\]\(\)])/g, '$1');
             targetElement.appendChild(document.createTextNode(cleanText));
         }
@@ -253,13 +246,13 @@ interface CustomHistoryState {
 }
 
 /**
- * Селектор, когда модальное окно открыто: `body.js-modalShow`;
+ * - Selector when the modal window is open: `body.js-modalShow`;
  * 
- * Селектор во время перехода: `#modal.js-busy`;
+ * - Selector during a transition: `#modal.js-busy`;
  * 
- * Селектор во время закрытия окна: `#modal.js-closing`.
+ * - Selector during a transition of closing the window: `#modal.js-closing`.
  * 
- * где `modal` - ID HTML-элемента модального окна.
+ * Where `modal` is HTML element ID of the modal window.
  */
 export abstract class AModal {
     readonly elModal: HTMLElement;
@@ -272,14 +265,14 @@ export abstract class AModal {
         this.elModal = document.getElementById(elIds.modal)!;
         this.elWindow = document.getElementById(elIds.window)!;
 
-        // Добавление обработчиков событий
+        // Add event listeners
 
-        // когда переход начат
+        // when transition started
         this.elModal.addEventListener("transitionstart", (event)=>{
-            if (event.target === this.elWindow)   // переход будет действовать только на #modalWindow
+            if (event.target === this.elWindow)   // transition occurs only on #modalWindow
                 this.elModal.classList.add("js-busy");
         });
-        // когда переход завершён
+        // whem transition ended
         this.elModal.addEventListener("transitionend", (event)=>{
             if (event.target === this.elWindow) this.handleTransitionEnd();
         });
@@ -287,7 +280,7 @@ export abstract class AModal {
             if (event.target === this.elWindow) this.handleTransitionEnd();
         });
 
-        // если пользователь нажал на затемнённое место, закрыть модальное окно
+        // if the user clicked on an overlay, close the modal window
         this.elModal.addEventListener("click", (event)=>{
             if (
                 !this.elModal.classList.contains("js-busy")
@@ -297,14 +290,14 @@ export abstract class AModal {
             }
         });
 
-        // если пользователь нажал клавишу "Esc", закрыть модальное окно
+        // if the user pressed the Esc key, close the modal window
         document.addEventListener("keydown", (event)=>{
             if (this.isShown() && event.key === "Escape") {
                 this.close();
             }
         });
 
-        // если пользователь нажал в браузере кнопку «Назад», закрыть модальное окно
+        // if the user tapped on a Back button, close the modal window
         window.addEventListener("popstate", ()=>{
             this.closeModalP();
         });
@@ -324,7 +317,7 @@ export abstract class AModal {
 
     abstract openFunction(...parameters: any[]): void;
 
-    // Сгенерировано ИИ //
+    // AI GENERATED
     private getScrollBarWidth() {
         return window.innerWidth - document.documentElement.clientWidth;
     }
@@ -333,19 +326,19 @@ export abstract class AModal {
         this.elModal.classList.remove("js-closing");
         showEl(this.elModal);
 
-        // Высчитываем ширину полосы прокрутки у окна
+        // Calculate the width of the scroll bar
         const scrollbarWidth = this.getScrollBarWidth();
         document.body.style.setProperty("--scrollbar-width", `${scrollbarWidth}px`);
         document.body.classList.add("js-modalShow");
 
         this.openFunction(...parameters);
 
-        // Добавляем запись в историю браузера
+        // Push the history state
         const state: CustomHistoryState = {modalOpen: true};
         window.history.pushState(state, "");
     }
     close(): Promise<void> {
-        // Получаем запись из истории браузера
+        // Obtain the history state
         return new Promise((resolve)=>{
             const currentState = history.state as CustomHistoryState|null;
             if (currentState?.modalOpen) {
@@ -354,7 +347,7 @@ export abstract class AModal {
                 }, {once: true});
                 history.back();
             }
-            // Закрываем модальное окно
+            // Close the modal window
             else {
                 this.closeModalP();
                 resolve();

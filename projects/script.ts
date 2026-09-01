@@ -76,7 +76,7 @@ class ModalS extends B.AModal {
         }
     }
     private resetScrolling() {
-        // обнулить позицию прокрутки в содержимом модального окна
+        // Reset the scroll position of the modal window content
         this.elInnerContent.scrollTop = 0;
         this.elInnerContent.classList.add("js-atTop");
 
@@ -98,20 +98,20 @@ class ModalS extends B.AModal {
 
     constructor() {
         super({modal: "modal", window: "modalWindow"});
-        // Добавить обработчики событий
+        // Add event listeners
 
-        // кнопка "Закрыть"
+        // the Close button
         document.getElementById("mwAClose")!.addEventListener("click", ()=>{
             this.close();
         });
 
-        // обновление прокрутки
+        // update scroll gradients
         this.elInnerContent.addEventListener("scroll", this.updateScrollGradients);
     }
 }
 const modal = new ModalS();
 
-// ЗАГРУЗИТЬ project_directory.json
+// LOAD project_directory.json
 
 interface ProjectDirectoryEntry {
     name: string,
@@ -131,17 +131,17 @@ B.loadJSON("project_directory.json")
     const projectDirectory = directory as Array<ProjectDirectoryEntry>;
     const templateCard = document.getElementById("templateCard") as HTMLTemplateElement;
     const projectCatalog = document.getElementById("projectCatalog") as HTMLDivElement;
-    // Динамически добавить элементы из переменной "projectDirectory"
+    // Load the elements dynamically from the variable `projectDirectory`
     
     projectDirectory.forEach((entry, index)=>{
         const clone = (templateCard.content.cloneNode(true)) as DocumentFragment;
 
-        // Картинка
+        // Picture
         for (const el of [(clone.querySelector(".image-fill") as HTMLDivElement), (clone.querySelector(".image-contain") as HTMLDivElement)]) {
             el.style.backgroundImage = `url(${entry.thumb_src ?? "/assets/photo_placeholder.svg"})`;
         }
 
-        // Содержимое
+        // Content
         clone.querySelector(".header")!.textContent = entry.name;
         {
             const elDatePublished = clone.querySelector(".datePublished") as HTMLTimeElement;
@@ -161,7 +161,7 @@ B.loadJSON("project_directory.json")
     });
 })
 .catch((e)=>{
-    // не удалось загрузить файл
+    // couldn't load the file
     console.error(e);
     const elProjectCatalogP = document.getElementById("projectCatalogP")!;
     elProjectCatalogP.textContent = "";

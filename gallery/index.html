@@ -11,7 +11,7 @@
         <meta name="description" content="Здесь представлены мои произведения и зарисовки, снятые с камеры смартфона.">
         <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-        <!-- Загрузка шрифтов из Google Fonts -->
+        <!-- Load Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,600;1,400;1,600&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
     </head>
     
     <body class="js-preload">
-        <!-- ШАБЛОН РАЗДЕЛА -->
+        <!-- SECTION TEMPLATE -->
         <template id="templateSection">
             <div class="cover-padding-p">
                 <section class="cover">
@@ -33,14 +33,14 @@
                 </section>
             </div>
         </template>
-        <!-- ШАБЛОН КАРТОЧКИ -->
+        <!-- CARD TEMPLATE -->
         <template id="templateCard">
             <figure class="card card-image">
                 <img class="clickable image" src="" alt="">
                 <figcaption class="name-p"><span class="clickable name"></span></figcaption>
             </figure>
         </template>
-        <!-- ШАБЛОН КАРТОЧКИ: "Все картинки" -->
+        <!-- CARD TEMPLATE: "All pictures" -->
         <template id="templateCardAllPictures">
             <button class="card all-pictures  clickable no-frame" id="bAllPictures">
                 <div class="gradient"></div>
@@ -53,7 +53,7 @@
                 </div>
             </button>
         </template>
-        <!-- ШАБЛОН ПАПКИ -->
+        <!-- FOLDER ITEM TEMPLATE -->
         <template id="templateFolder">
             <li class="folder  flex clickable">
                 <div class="icon-folder-p">
@@ -111,7 +111,7 @@
                             </details>
                         </div>
 
-                        <!-- ПОИСК -->
+                        <!-- SEARCH -->
                         <div class="flex center-h cover-padding-p">
                             <form method="GET" id="formSearch" class="flex stretch">
                                 <input id="inpSearch" name="search" type="search" placeholder="Поиск..." autocomplete="off">
@@ -146,7 +146,7 @@
             </footer>
         </div>
 
-        <!-- Допустимые классы: hide, slideshow -->
+        <!-- Acceptable classes: hide, slideshow -->
         <div id="modal" class="hide"
             role="dialog"
             aria-modal="true"

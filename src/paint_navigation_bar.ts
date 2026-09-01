@@ -1,12 +1,12 @@
 const elHeaderWrapper = document.getElementById("headerWrapper")!;
 const elHeader = document.getElementById("header")!;
 
-// Тянучка
+// Puller
 {
-    // Функция для динамического перерасчета высоты меню
+    // A function for dynamic recalculation of the menu's height
     let spaceHeight = 0;
     const updateHeaderHeight = ()=>{
-        const currentHeight = elHeader.offsetHeight + 3; // включая полосу снизу
+        const currentHeight = elHeader.offsetHeight + 3; // including the bottom line
         elHeaderWrapper.style.setProperty('--space-height', `${currentHeight}px`);
         spaceHeight = currentHeight;
     };
@@ -40,7 +40,7 @@ const elHeader = document.getElementById("header")!;
     });
 }
 
-// Раскраска навигационных кнопок
+// Paint the navigation bar
 {
     const elNavBars = document.querySelectorAll("nav > a");
 
@@ -53,7 +53,7 @@ const elHeader = document.getElementById("header")!;
     });
 }
 
-// Включать переход только после загрузки документа
+// Enable transition only after the document is loaded
 window.addEventListener("load", ()=>{
     document.body.classList.remove("js-preload");
 }, {once: true})
