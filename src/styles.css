@@ -52,7 +52,7 @@
     position: relative;
 
     border-radius: 50%;
-    outline: 5px solid var(--c-gray);
+    /* outline: 5px solid var(--c-gray); */
 
     overflow: hidden;
 }
@@ -62,7 +62,7 @@
     position: absolute;
 }
 .photo {
-    background-image: url("/assets/me.webp");
+    background-image: url("/gallery/directory/1/20211206_150157.webp");
     background-repeat: no-repeat;
     background-size: cover;
 }
