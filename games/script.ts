@@ -91,17 +91,13 @@ class ModalS extends B.AModal {
 
         // powered_by
         {
-            const poweredBy = entry.details?.powered_by ?? "none";
-            if (poweredBy!=="none") {
-                B.showEl(this.mw.poweredBy)
-                this.mw.poweredBy.textContent = (
-                    (poweredBy==="turbowarp") ? "Создано на Scratch с использованием сторонних утилит TurboWarp и TurboWarp Packager."
-                    : (poweredBy==="pixijs") ? "Работает на браузерном игровом движке PixiJS."
-                    : poweredBy
-                )
+            const poweredBy = entry.details?.powered_by;
+            if (poweredBy) {
+                B.showEl(this.mw.poweredBy);
+                this.mw.poweredBy.textContent = poweredBy;
             }
             else {
-                B.hideEl(this.mw.poweredBy)
+                B.hideEl(this.mw.poweredBy);
             }
         }
 
