@@ -4,6 +4,7 @@
         "src": "/scrabble_counter",
         "thumb_src": "thumbnails/scrabble_counter.webp",
         "date_published": "11.09.2026",
+        "date_updated": "16.09.2026",
         
         "details": {
             "description": "Это приложение берёт от «лучшего» счетовода ответственность за подсчёт, запись очков и написание слов и заменяет блокнот, калькулятор и орфографический словарь."
